@@ -9,13 +9,13 @@ import uvicorn
 
 # Se importan todas las rutas
 from Votante import rutas as rutas_votante
-from Canditados import rutas as rutas_candidato
+from Candidato import rutas as rutas_candidato
 from Eleccion import rutas as rutas_eleccion
 from PartidoPolitico import rutas as rutas_partido_politico
 
 # Se importan los modelos
 from Votante import modelo
-# from Canditados import modelo
+# from Candidato import modelo
 # from Eleccion import modelo
 # from PartidoPolitico import modelo
 
@@ -47,6 +47,4 @@ if __name__ == "__main__":
     db.Base.metadata.create_all(db.conn)
 
     #Corre el servidor de uvicorn para la api
-    # uvicorn.run(app="main:app", reload=True)
-
-# (∩｀-´)⊃━☆ﾟ.*･｡ﾟ
+    uvicorn.run(app="main:app", reload=True)
