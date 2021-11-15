@@ -2,7 +2,7 @@ from fastapi import FastAPI, APIRouter
 
 router = APIRouter()
 
-@router.get("/votante/obtener_votante")
+@router.get("/obtener_votante")
 def obtener_votante():
     votante = {
         "cedula": "1225093110",
