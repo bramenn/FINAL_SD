@@ -6,9 +6,9 @@ class Votante(db.Base):
     __tablename__ = "votante"
     cedula = Column("cedula", Integer, primary_key=True, unique=True, index=True)
     nombre = Column("nombre", String(255))
-    apelldos = Column("apelldos", String(255))
+    apellidos = Column("apellidos", String(255))
     email = Column("email", String(255))
-    telefono = Column("telefono", String(255))
+    celular = Column("celular", String(255))
     fotografia = Column("fotografia", String(255))
     password = Column("password", String(255))
     eliminado = Column("eliminado", Boolean, default=False)
