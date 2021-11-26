@@ -1,5 +1,6 @@
 import db
 from sqlalchemy import Column, Integer, Boolean, String
+from pydantic import BaseModel
 
 class Candidato(db.Base):
     """Este modelo define los atributos de la tabla candidato y sus tipos de dato"""
@@ -10,4 +11,12 @@ class Candidato(db.Base):
     celular = Column("celular", String(255))
     email = Column("email", String(255))
     fotografia = Column("fotografia", String(255))
-    partido_politico = Column("partido politico", String(255))
+    
+## MODELO PARA RECIBIR INFORMACION DE UNA PETICION
+class Candidato_apoyo(BaseModel):
+    cedula: str
+    nombre: str
+    apellidos: str
+    celular: str
+    email: str
+    fotografia: str

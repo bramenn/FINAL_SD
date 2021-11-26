@@ -23,3 +23,5 @@ class Votante_apoyo(BaseModel):
     email: str
     celular: str
     fotografia: str
+
+    

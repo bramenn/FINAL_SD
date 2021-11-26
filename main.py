@@ -31,13 +31,13 @@ app = FastAPI()
 app.include_router(rutas_votante.router , prefix="/v1/votante", tags=["votantes"])
 
 # # Ruta de partido_politico
-# app.include_router(rutas_partido_politico.router, prefix="/v1/partido_politico", tags=["partidos_politicos"])
+app.include_router(rutas_partido_politico.router, prefix="/v1/partido_politico", tags=["partidos_politicos"])
 
 # # Ruta de eleccion
 # app.include_router(rutas_eleccion.router, prefix="/v1/eleccion", tags=["elecciones"])
 
 # # Ruta de candidato
-# app.include_router(rutas_candidato.router, prefix="/v1/candidato", tags=["candidatos"])
+app.include_router(rutas_candidato.router, prefix="/v1/candidato", tags=["candidatos"])
 
 # Aqui se corre el programa
 if __name__ == "__main__":
