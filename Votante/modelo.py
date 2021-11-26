@@ -1,6 +1,8 @@
 import db
 from sqlalchemy import Column, Integer, Boolean, String
+from pydantic import BaseModel
 
+## MODELO RELACIONADO CON LA BD
 class Votante(db.Base):
     """Este modelo define los atributos de la tabla votante y sus tipos de dato"""
     __tablename__ = "votante"
@@ -11,4 +13,13 @@ class Votante(db.Base):
     celular = Column("celular", String(255))
     fotografia = Column("fotografia", String(255))
     password = Column("password", String(255))
-    eliminado = Column("eliminado", Boolean, default=False)
+
+
+## MODELO PARA RECIBIR INFORMACION DE UNA PETICION
+class Votante_apoyo(BaseModel):
+    cedula: str
+    nombre: str
+    apellidos: str
+    email: str
+    celular: str
+    fotografia: str

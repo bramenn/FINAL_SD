@@ -7,6 +7,6 @@ class PartidoPolitico(db.Base):
     NIT = Column("NIT", Integer, primary_key=True, unique=True, index=True)
     nombre = Column("nombre", String(255))
     direccion = Column("direccion", String(255))
-    foto_oficial = Column("foto oficial", String(255))
+    foto_oficial = Column("foto_oficial", String(255))
     telefono = Column("telefono", String(255))
     candidatos = Column("candidatos", String(255))

@@ -43,8 +43,8 @@ app.include_router(rutas_votante.router , prefix="/v1/votante", tags=["votantes"
 if __name__ == "__main__":
 
     # Corre las migraciones de la bd
-    print("Corriendo migraciones de la bd")
-    db.Base.metadata.create_all(db.conn)
+    # print("Corriendo migraciones de la bd")
+    # db.Base.metadata.create_all(db.conn)
 
     #Corre el servidor de uvicorn para la api
     uvicorn.run(app="main:app", reload=True)

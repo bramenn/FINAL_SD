@@ -1,9 +1,17 @@
+from typing import Any, Dict
 from fastapi import FastAPI, APIRouter
+
+from Votante.modelo import Votante_apoyo
 
 router = APIRouter()
 
-@router.get("/obtener_votante")
-def obtener_votante():
+# GET -> Buscar
+# POST -> Insersion -  Crear
+# PUT -> Actualizar
+# DELETE -> Borrar
+
+@router.get("/obtener_votante/{cedula}", response_model=Dict[str, Any])
+def obtener_votante(cedula:str):
     votante = {
         "cedula": "1225093110",
         "nombre": "Brayan Alejandro",
@@ -14,3 +22,36 @@ def obtener_votante():
         "clave": "asdhashdi"
     }
     return votante
+
+@router.post("/crear_votante", response_model=Dict[str, Any])
+def crear_votante(votante: Votante_apoyo):
+    print(
+        f"cedula: {votante.cedula} \n"
+        f"nombre: {votante.nombre} \n"
+        f"apellidos: {votante.apellidos} \n"
+        f"email: {votante.email} \n"
+        f"celular: {votante.celular} \n"
+        f"fotografia: {votante.fotografia} \n"
+    )
+
+    return {}
+
+@router.put("/actualizar_votante", )
+def actualizar_votante(votante: Votante_apoyo):
+    print(
+        f"cedula: {votante.cedula} \n"
+        f"nombre: {votante.nombre} \n"
+        f"apellidos: {votante.apellidos} \n"
+        f"email: {votante.email} \n"
+        f"celular: {votante.celular} \n"
+        f"fotografia: {votante.fotografia} \n"
+    )
+
+    return {}
+
+@router.delete("/eliminar_votante/{cedula}")
+def eliminar_votante(cedula:str):
+
+    mensaje = f"Se elimino el votante con cedula: {cedula}"
+
+    return {"mensaje":mensaje}
