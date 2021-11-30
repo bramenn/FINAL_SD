@@ -12,6 +12,12 @@ router = APIRouter()
 
 @router.get("/obtener_votante/{cedula}", response_model=Dict[str, Any])
 def obtener_votante(cedula:str):
+    """
+    Esta es la ruta para obtener un votante
+
+        votante
+
+    """
     votante = {
         "cedula": "1225093110",
         "nombre": "Brayan Alejandro",
