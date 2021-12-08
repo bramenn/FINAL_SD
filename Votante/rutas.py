@@ -11,9 +11,9 @@ router = APIRouter()
 # PUT -> Actualizar
 # DELETE -> Borrar
 
-@router.get("/obtener_vontantes", response_model=Dict[str, Any])
-def obtener_vontantes():
-    votantes = obtener_votantes()
+@router.get("/obtener_votantes", response_model=Dict[str, Any])
+def obtener_votantes():
+    votantes = obtener_votantes_db()
     diccionario_votantes = {}
     for votante in votantes:
         votante_item = {

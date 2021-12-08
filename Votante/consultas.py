@@ -1,7 +1,7 @@
 from Votante.modelo import Votante, Votante_apoyo
 import db
 
-def obtener_votantes():
+def obtener_votantes_db():
     """
     Obtener todos los votantes
     query:
