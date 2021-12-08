@@ -19,12 +19,12 @@ def obtener_votante(cedula:str):
 
     """
     votante = {
-        "cedula": "1225093110",
-        "nombre": "Brayan Alejandro",
-        "apellidos": "Herrera Amariles",
-        "e-mail": "brayan.herrera@utp.edu.co",
-        "telefono": "3058790290",
-        "fotografia": "imagen.jpeg",
+        "cedula": "",
+        "nombre": "",
+        "apellidos": "",
+        "e-mail": "",
+        "telefono": "",
+        "fotografia": "",
         "clave": "asdhashdi"
     }
     return votante

@@ -13,12 +13,12 @@ router = APIRouter()
 @router.get("/obtener_candidato/{cedula}", response_model=Dict[str, Any])
 def obtener_candidato(cedula:str):
     candidato = {
-        "cedula": "1225093110",
-        "nombre": "Brayan",
-        "apellidos": "Amariles",
-        "celular": "3058790111",
-        "e-mail": "herrera@utp.edu.co",
-        "fotografia": "imagen.jpeg",
+        "cedula": "",
+        "nombre": "",
+        "apellidos": "",
+        "celular": "",
+        "e-mail": "",
+        "fotografia": "",
     }
     return candidato
 
