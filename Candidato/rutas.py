@@ -17,6 +17,7 @@ def obtener_candidatos():
     diccionario_candidatos = {}
     for candidato in candidato:
         candidato_item = {
+            "cedula": candidato.cedula,
             "nombre": candidato.nombre,
             "apellidos": candidato.apellidos,
             "celular": candidato.celular,
