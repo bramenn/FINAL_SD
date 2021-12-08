@@ -2,6 +2,7 @@ from typing import Any, Dict
 from fastapi import FastAPI, APIRouter
 
 from Votante.modelo import Votante_apoyo
+from Votante.consultas import *
 
 router = APIRouter()
 
@@ -9,6 +10,24 @@ router = APIRouter()
 # POST -> Insersion -  Crear
 # PUT -> Actualizar
 # DELETE -> Borrar
+
+@router.get("/obtener_vontantes", response_model=Dict[str, Any])
+def obtener_vontantes():
+    votantes = obtener_votantes()
+    diccionario_votantes = {}
+    for votante in votantes:
+        votante_item = {
+            "nombre": votante.nombre,
+            "apellidos": votante.apellidos,
+            "email": votante.email,
+            "celular": votante.celular,
+            "fotografia": votante.fotografia,
+            "password": votante.password,
+        }
+
+        diccionario_votantes[votante.cedula] = votante_item
+
+    return diccionario_votantes
 
 @router.get("/obtener_votante/{cedula}", response_model=Dict[str, Any])
 def obtener_votante(cedula:str):
@@ -18,15 +37,8 @@ def obtener_votante(cedula:str):
         votante
 
     """
-    votante = {
-        "cedula": "",
-        "nombre": "",
-        "apellidos": "",
-        "e-mail": "",
-        "telefono": "",
-        "fotografia": "",
-        "clave": "asdhashdi"
-    }
+
+    votante = obtener_votante_por_cedula(cedula=cedula)
     return votante
 
 @router.post("/crear_votante", response_model=Dict[str, Any])
