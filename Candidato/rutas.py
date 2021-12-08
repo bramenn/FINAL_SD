@@ -11,35 +11,35 @@ router = APIRouter()
 # PUT -> Actualizar
 # DELETE -> Borrar
 
-@router.get("/obtener_votantes", response_model=Dict[str, Any])
-def obtener_votantes():
-    votantes = obtener_votantes_db()
-    diccionario_votantes = {}
-    for votante in votantes:
-        votante_item = {
-            "nombre": votante.nombre,
-            "apellidos": votante.apellidos,
-            "email": votante.email,
-            "celular": votante.celular,
-            "fotografia": votante.fotografia,
-            "password": votante.password,
+@router.get("/obtener_candidatos", response_model=Dict[str, Any])
+def obtener_candidatos():
+    candidatos = obtener_candidatos_db()
+    diccionario_candidatos = {}
+    for candidato in candidato:
+        candidato_item = {
+            "nombre": candidato.nombre,
+            "apellidos": candidato.apellidos,
+            "celular": candidato.celular,
+            "email": candidato.email,
+            "fotografia": candidato.fotografia,
         }
 
-        diccionario_votantes[votante.cedula] = votante_item
+        diccionario_candidatos[candidato.cedula] = candidatos_item
 
-    return diccionario_votantes
+    return diccionario_candidatos
 
 @router.get("/obtener_candidato/{cedula}", response_model=Dict[str, Any])
 def obtener_candidato(cedula:str):
-    candidato = {
-        "cedula": "",
-        "nombre": "",
-        "apellidos": "",
-        "celular": "",
-        "e-mail": "",
-        "fotografia": "",
-    }
+    """
+    Esta es la ruta para obtener un candidato
+
+        candidato
+
+    """
+
+    candidato = obtener_candidato_por_cedula(cedula=cedula)
     return candidato
+
 
 @router.post("/crear_candidato", response_model=Dict[str, Any])
 def crear_candidato(candidato: Candidato_apoyo):
