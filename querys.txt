@@ -1,0 +1,12 @@
+# INSERTAMOS VOTANTES
+INSERT INTO votante (cedula, nombre, apellidos, email, celular, fotografia, password) VALUES ('1088', 'Monica', 'Largo', 'monica@utp.edu.co', '3333333333', 'hermosa.jpeg', 'saimons98');
+INSERT INTO votante (cedula, nombre, apellidos, email, celular, fotografia, password) VALUES ('1225', 'Alejandro', 'Herrera', 'alejandro@utp.edu.co', '444444444', 'guapurita.jpeg', 'melashaco');
+
+# INSERTAMOS CANDIDATOS
+INSERT INTO candidato (cedula, nombre, apellidos, celular, email, fotografia) VALUES ('666', 'Urube', 'Uberrimo', '66666666', 'paraco@gmail.rrr', '6404.png');
+
+# INSERTAMOS PARTIDOS_POLITICOS
+INSERT INTO partido_politico (nit, nombre, direccion, foto_oficial, telefono, cedula_candidato) VALUES ('001', 'Moviento Naranja', 'Medallollin', 'Mandarina', '3335656', '666');
+
+# INSERTAMOS ELECCIONES
+INSERT INTO eleccion (codigo, fecha_inicio, fecha_fin, nombre, descripcion, cedula_candidato) VALUES ('54sdx5s', 15665288400, 15665374799, 'Precidenciales', 'El robo mas grande del planeta', '666');
