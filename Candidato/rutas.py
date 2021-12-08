@@ -15,9 +15,8 @@ router = APIRouter()
 def obtener_candidatos():
     candidatos = obtener_candidatos_db()
     diccionario_candidatos = {}
-    for candidato in candidato:
+    for candidato in candidatos:
         candidato_item = {
-            "cedula": candidato.cedula,
             "nombre": candidato.nombre,
             "apellidos": candidato.apellidos,
             "celular": candidato.celular,
@@ -25,7 +24,7 @@ def obtener_candidatos():
             "fotografia": candidato.fotografia,
         }
 
-        diccionario_candidatos[candidato.cedula] = candidatos_item
+        diccionario_candidatos[candidato.cedula] = candidato_item
 
     return diccionario_candidatos
 

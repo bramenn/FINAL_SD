@@ -20,9 +20,10 @@ def obtener_eleccion_por_fecha(fecha: int):
         .filter(Eleccion.fecha_inicio <= fecha_fin)
     )
 
-    if not eleccion:
+    if len(eleccion) > 0:
         return None
 
+    print(eleccion.codigo)
     eleccion_dict = {
         "codigo": eleccion.codigo,
         "fecha_inicio": eleccion.fecha_inicio,

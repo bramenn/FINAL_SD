@@ -16,11 +16,11 @@ def obtener_elecciones():
     elecciones = obtener_elecciones_db()
 
     # CONVERTIMOS LA FECHAS GUARDADAS EN FECHAS HUMANAS
-    elecciones.fecha_inicio = datetime.fromtimestamp(elecciones.fecha_inicio)
-    elecciones.fecha_fin = datetime.fromtimestamp(elecciones.fecha_fin)
 
     diccionario_elecciones = {}
     for eleccion in elecciones:
+        eleccion.fecha_inicio = datetime.fromtimestamp(eleccion.fecha_inicio)
+        eleccion.fecha_fin = datetime.fromtimestamp(eleccion.fecha_fin)
         eleccion_item = {
             "fecha_inicio": eleccion.fecha_inicio,
             "fecha_fin": eleccion.fecha_fin,
@@ -32,12 +32,12 @@ def obtener_elecciones():
 
     return diccionario_elecciones
 
-
+# NO ANDA
 @router.get("/obtener_eleccion/{fecha}", response_model=Dict[str, Any])
 def obtener_eleccion(fecha: str):
     # date_time = datetime.strptime(fecha, "%d/%m/%Y %H:%M:%S")
     # Formateamos la fecha entrante en dia/mes/año
-    date_time = datetime.strptime(fecha, "%d/%m/%Y")
+    date_time = datetime.strptime(fecha, "%d-%m-%Y")
     # Convertimos la fecha en timestamp
     fecha = datetime.timestamp(date_time)
     eleccion = obtener_eleccion_por_fecha(fecha)

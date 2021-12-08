@@ -16,7 +16,7 @@ def obtener_candidato_por_cedula(cedula:str):
     if not candidato:
         return None
 
-    votante_dict = {
+    candidato_dict = {
             "cedula": candidato.cedula,
             "nombre": candidato.nombre,
             "apellidos": candidato.apellidos,
