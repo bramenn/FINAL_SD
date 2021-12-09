@@ -6,6 +6,7 @@ from pydantic import BaseModel
 ## MODELO RELACIONADO CON LA BD
 class Eleccion(db.Base):
     """Este modelo define los atributos de la tabla eleccion y sus tipos de dato"""
+
     __tablename__ = "eleccion"
     codigo = Column("codigo", String(255), primary_key=True, unique=True, index=True)
     fecha_inicio = Column("fecha_inicio", BigInteger, unique=True)
@@ -13,6 +14,7 @@ class Eleccion(db.Base):
     nombre = Column("nombre", String(255))
     descripcion = Column("descripcion", String(255))
     cedula_candidato = Column(String(255), ForeignKey("candidato.cedula"))
+
 
 ## MODELO PARA RECIBIR INFORMACION DE UNA PETICION
 class Eleccion_apoyo(BaseModel):

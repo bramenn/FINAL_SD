@@ -7,8 +7,10 @@ from Voto.modelo import Voto
 from PartidoPolitico.modelo import PartidoPolitico
 from Eleccion.modelo import Eleccion
 
+
 class Candidato(db.Base):
     """Este modelo define los atributos de la tabla candidato y sus tipos de dato"""
+
     __tablename__ = "candidato"
     cedula = Column("cedula", String(255), primary_key=True, unique=True, index=True)
     nombre = Column("nombre", String(255))
@@ -19,6 +21,7 @@ class Candidato(db.Base):
     voto = relationship("Voto")
     partido_politico = relationship("PartidoPolitico")
     eleccion = relationship("Eleccion")
+
 
 ## MODELO PARA RECIBIR INFORMACION DE UNA PETICION
 class Candidato_apoyo(BaseModel):

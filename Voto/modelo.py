@@ -6,13 +6,15 @@ from pydantic import BaseModel
 
 
 from Votante.modelo import Votante
+
 ## MODELO RELACIONADO CON LA BD
 class Voto(db.Base):
     """Este modelo define los atributos de la tabla voto y sus tipos de dato"""
+
     __tablename__ = "voto"
     id = Column("id", String(255), primary_key=True, unique=True, index=True)
     fecha_eleccion = Column("fecha_eleccion", String(255))
-    cedula_votante = Column(String(255), ForeignKey('votante.cedula'))
+    cedula_votante = Column(String(255), ForeignKey("votante.cedula"))
     cedula_candidato = Column(String(255), ForeignKey("candidato.cedula"))
     # many-to-one side remains, see tip below
     votante = relationship("Votante", back_populates="voto")

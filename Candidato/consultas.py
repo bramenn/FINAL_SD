@@ -1,6 +1,7 @@
 from Candidato.modelo import Candidato
 import db
 
+
 def obtener_candidatos_db():
     """
     Obtener todos los votantes
@@ -10,18 +11,19 @@ def obtener_candidatos_db():
     candidato = db.session.query(Candidato).all()
     return candidato
 
-def obtener_candidato_por_cedula(cedula:str):
-    candidato = db.session.query(Candidato).where(Candidato.cedula==cedula).first()
+
+def obtener_candidato_por_cedula(cedula: str):
+    candidato = db.session.query(Candidato).where(Candidato.cedula == cedula).first()
 
     if not candidato:
         return None
 
     candidato_dict = {
-            "cedula": candidato.cedula,
-            "nombre": candidato.nombre,
-            "apellidos": candidato.apellidos,
-            "email": candidato.email,
-            "celular": candidato.celular,
-            "fotografia": candidato.fotografia,
-        }
+        "cedula": candidato.cedula,
+        "nombre": candidato.nombre,
+        "apellidos": candidato.apellidos,
+        "email": candidato.email,
+        "celular": candidato.celular,
+        "fotografia": candidato.fotografia,
+    }
     return candidato_dict

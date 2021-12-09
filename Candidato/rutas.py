@@ -11,6 +11,7 @@ router = APIRouter()
 # PUT -> Actualizar
 # DELETE -> Borrar
 
+
 @router.get("/obtener_candidatos", response_model=Dict[str, Any])
 def obtener_candidatos():
     candidatos = obtener_candidatos_db()
@@ -28,8 +29,9 @@ def obtener_candidatos():
 
     return diccionario_candidatos
 
+
 @router.get("/obtener_candidato/{cedula}", response_model=Dict[str, Any])
-def obtener_candidato(cedula:str):
+def obtener_candidato(cedula: str):
     """
     Esta es la ruta para obtener un candidato
 
@@ -54,7 +56,10 @@ def crear_candidato(candidato: Candidato_apoyo):
 
     return {}
 
-@router.put("/actualizar_candidato", )
+
+@router.put(
+    "/actualizar_candidato",
+)
 def actualizar_candidato(candidato: Candidato_apoyo):
     print(
         f"cedula: {candidato.cedula} \n"
@@ -67,9 +72,10 @@ def actualizar_candidato(candidato: Candidato_apoyo):
 
     return {}
 
+
 @router.delete("/eliminar_candidato/{cedula}")
-def eliminar_candidato(cedula:str):
+def eliminar_candidato(cedula: str):
 
     mensaje = f"Se elimino el candidato con cedula: {cedula}"
 
-    return {"mensaje":mensaje}
+    return {"mensaje": mensaje}

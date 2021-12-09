@@ -32,6 +32,7 @@ def obtener_elecciones():
 
     return diccionario_elecciones
 
+
 # NO ANDA
 @router.get("/obtener_eleccion/{fecha}", response_model=Dict[str, Any])
 def obtener_eleccion(fecha: str):

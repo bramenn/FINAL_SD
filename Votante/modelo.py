@@ -6,6 +6,7 @@ from pydantic import BaseModel
 ## MODELO RELACIONADO CON LA BD
 class Votante(db.Base):
     """Este modelo define los atributos de la tabla votante y sus tipos de dato"""
+
     __tablename__ = "votante"
     cedula = Column("cedula", String(255), primary_key=True, unique=True, index=True)
     nombre = Column("nombre", String(255))
@@ -15,6 +16,7 @@ class Votante(db.Base):
     fotografia = Column("fotografia", String(255))
     password = Column("password", String(255))
     voto = relationship("Voto", back_populates="votante", uselist=False)
+
 
 ## MODELO PARA RECIBIR INFORMACION DE UNA PETICION
 class Votante_apoyo(BaseModel):

@@ -9,4 +9,4 @@ INSERT INTO candidato (cedula, nombre, apellidos, celular, email, fotografia) VA
 INSERT INTO partido_politico (nit, nombre, direccion, foto_oficial, telefono, cedula_candidato) VALUES ('001', 'Moviento Naranja', 'Medallollin', 'Mandarina', '3335656', '666');
 
 # INSERTAMOS ELECCIONES
-INSERT INTO eleccion (codigo, fecha_inicio, fecha_fin, nombre, descripcion, cedula_candidato) VALUES ('54sdx5s', 15665288400, 15665374799, 'Precidenciales', 'El robo mas grande del planeta', '666');
+INSERT INTO eleccion (codigo, fecha_inicio, fecha_fin, nombre, descripcion, cedula_candidato) VALUES ('54sdx5s', 15665288400, 15665374799, 'Presidenciales', 'El robo mas grande del planeta', '666');

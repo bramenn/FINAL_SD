@@ -30,10 +30,14 @@ app = FastAPI()
 # Se importan las rutas de la API:
 
 # Ruta de votante
-app.include_router(rutas_votante.router , prefix="/v1/votante", tags=["votantes"])
+app.include_router(rutas_votante.router, prefix="/v1/votante", tags=["votantes"])
 
 # # Ruta de partido_politico
-app.include_router(rutas_partido_politico.router, prefix="/v1/partido_politico", tags=["partidos_politicos"])
+app.include_router(
+    rutas_partido_politico.router,
+    prefix="/v1/partido_politico",
+    tags=["partidos_politicos"],
+)
 
 # # Ruta de eleccion
 app.include_router(rutas_eleccion.router, prefix="/v1/eleccion", tags=["elecciones"])
