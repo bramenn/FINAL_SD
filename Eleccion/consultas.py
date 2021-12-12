@@ -9,8 +9,10 @@ def obtener_elecciones_db():
     query:
         select * from eleccion;
     """
-    eleccion = db.session.query(Eleccion).all()
-    return eleccion
+    eleccions = db.session.query(Eleccion).all()
+    if not eleccions:
+        return None
+    return eleccions
 
 
 def obtener_eleccion_por_fecha(fecha: int):
