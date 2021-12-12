@@ -63,12 +63,31 @@ def obtener_partidos_politicos():
             f"\t telefono: {votante_info.get('telefono')}"
         )
 
+def obtener_elecciones():
+    url = "http://localhost:8000/v1/eleccion/obtener_elecciones"
+    resp = requests.get(url)
+
+    elecciones = json.loads(resp.content)
+
+    print("Imprimiendoa todas las elecciones:")
+    for eleccion_codigo in elecciones:
+        eleccion_info = elecciones[eleccion_codigo]
+        print(
+            "-------------------------------------------------------------------------------------"
+            "-------------------------------------------------------------------------------------"
+            f"\n codigo: {eleccion_codigo}"
+            f"\t fecha_inicio: {eleccion.get('fecha_inicio')}"
+            f"\t fecha_fin: {eleccion.get('fecha_fin')}"
+            f"\t nombre: {eleccion.get('nombre')}"
+            f"\t descripcion: {eleccion.get('descripcion')}"
+        )
 
 while True:
     print("VOTANTE\n" 
         "1-  Obtener todos los votantes\n" 
         "2-  Obtener todos los candidatos\n" 
         "3-  Obtener todos los partidos_politicos\n" 
+        "4-  Obtener todas las elecciones\n"
         "10- Salir\n")
 
     opt = int(input("Igrese una opcion: "))
@@ -79,6 +98,8 @@ while True:
         obtener_candidatos()
     elif opt == 3:
         obtener_partidos_politicos()
+    elif opt == 4:
+        obtener_elecciones()
     elif opt == 10:
         break
     else:
