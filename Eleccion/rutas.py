@@ -14,23 +14,24 @@ router = APIRouter()
 @router.get("/obtener_elecciones", response_model=Dict[str, Any])
 def obtener_elecciones():
     elecciones = obtener_elecciones_db()
+    if elecciones:
+        diccionario_elecciones = {}
+        for eleccion in elecciones:
+            # CONVERTIMOS LA FECHAS GUARDADAS EN FECHAS HUMANAS
+            eleccion.fecha_inicio = datetime.fromtimestamp(eleccion.fecha_inicio)
+            eleccion.fecha_fin = datetime.fromtimestamp(eleccion.fecha_fin)
 
-    # CONVERTIMOS LA FECHAS GUARDADAS EN FECHAS HUMANAS
+            eleccion_item = {
+                "fecha_inicio": eleccion.fecha_inicio,
+                "fecha_fin": eleccion.fecha_fin,
+                "nombre": eleccion.nombre,
+                "descripcion": eleccion.descripcion,
+            }
 
-    diccionario_elecciones = {}
-    for eleccion in elecciones:
-        eleccion.fecha_inicio = datetime.fromtimestamp(eleccion.fecha_inicio)
-        eleccion.fecha_fin = datetime.fromtimestamp(eleccion.fecha_fin)
-        eleccion_item = {
-            "fecha_inicio": eleccion.fecha_inicio,
-            "fecha_fin": eleccion.fecha_fin,
-            "nombre": eleccion.nombre,
-            "descripcion": eleccion.descripcion,
-        }
+            diccionario_elecciones[eleccion.codigo] = eleccion_item
 
-        diccionario_elecciones[eleccion.codigo] = eleccion_item
-
-    return diccionario_elecciones
+        return diccionario_elecciones
+    return {"result": "No se encontraron elecciones"}
 
 
 # NO ANDA

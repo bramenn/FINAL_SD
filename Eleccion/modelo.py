@@ -1,7 +1,10 @@
+from sqlalchemy.orm import relationship
 from sqlalchemy.sql.schema import ForeignKey
-import db
 from sqlalchemy import Column, Integer, Boolean, String, BigInteger
 from pydantic import BaseModel
+
+import db
+from Candidato.modelo import Candidato
 
 ## MODELO RELACIONADO CON LA BD
 class Eleccion(db.Base):
@@ -13,7 +16,8 @@ class Eleccion(db.Base):
     fecha_fin = Column("fecha_fin", BigInteger, unique=True)
     nombre = Column("nombre", String(255))
     descripcion = Column("descripcion", String(255))
-    cedula_candidato = Column(String(255), ForeignKey("candidato.cedula"))
+    candidato = relationship("Candidato")
+
 
 
 ## MODELO PARA RECIBIR INFORMACION DE UNA PETICION
