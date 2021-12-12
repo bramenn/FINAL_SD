@@ -23,6 +23,7 @@ def obtener_candidatos():
             "celular": candidato.celular,
             "email": candidato.email,
             "fotografia": candidato.fotografia,
+            "nit_partido_politico": candidato.nit_partido_politico,
         }
 
         diccionario_candidatos[candidato.cedula] = candidato_item

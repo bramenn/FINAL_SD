@@ -25,6 +25,7 @@ def obtener_candidato_por_cedula(cedula: str):
         "email": candidato.email,
         "celular": candidato.celular,
         "fotografia": candidato.fotografia,
+        "nit_partido_politico": candidato.nit_partido_politico,
     }
     return candidato_dict
 
@@ -38,6 +39,7 @@ def crear_candidato_query(candidato: Candidato_apoyo):
         email = candidato.email,
         celular = candidato.celular,
         fotografia = candidato.fotografia,
+        nit_partido_politico = candidato.nit_partido_politico,
     )
 
     try: # Si la insercion sale bien nos dice "El candidato se ha creado"

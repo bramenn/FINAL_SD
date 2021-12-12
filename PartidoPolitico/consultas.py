@@ -28,3 +28,21 @@ def obtener_partido_politico_por_nit(nit: str):
         "telefono": partido_politico.telefono,
     }
     return partido_politico_dict
+
+def crear_partido_politico_query(partido_politico: PartidoPolitico_apoyo):
+
+    # se crea la variable partido_politico_db basados en el modelo PartidoPolitico
+    partido_politico_db = PartidoPolitico(
+        nit = partido_politico.nit,
+        nombre = partido_politico.nombre,
+        direccion = partido_politico.direccion,
+        foto_oficial = partido_politico.foto_oficial,
+        telefono = partido_politico.telefono,
+    )
+
+    try: # Si la insercion sale bien nos dice "El partido_politico se ha creado"
+        db.session.add(partido_politico_db)
+        db.session.commit()
+        return "El partido_politico se ha creado"
+    except: # Si no sale bien nos dice "No se ha creado el partido_politico"
+        return "No se ha creado el partido_politico"

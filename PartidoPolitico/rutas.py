@@ -44,15 +44,11 @@ def obtener_partido_politico(nit: str):
 
 @router.post("/crear_partido_politico", response_model=Dict[str, Any])
 def crear_partido_politico(partido_politico: PartidoPolitico_apoyo):
-    print(
-        f"nit: {partido_politico.nit} \n"
-        f"nombre: {partido_politico.nombre} \n"
-        f"direccion: {partido_politico.direccion} \n"
-        f"foto_oficial: {partido_politico.foto_oficial} \n"
-        f"telefono: {partido_politico.telefono} \n"
-    )
 
-    return {}
+    # Llamamos una funcion para crear un partido politico
+    result = crear_partido_politico_query(partido_politico)
+
+    return {"result":result}
 
 
 @router.put(
