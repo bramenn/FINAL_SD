@@ -1,3 +1,5 @@
+from strgen import StringGenerator as SG
+
 from Votante.modelo import Votante, Votante_apoyo
 import db
 
@@ -26,5 +28,33 @@ def obtener_votante_por_cedula(cedula: str):
         "celular": votante.celular,
         "fotografia": votante.fotografia,
         "password": votante.password,
+        "edad": votante.edad,
     }
     return votante_dict
+
+def generar_password():
+    password = SG(r"[\w]{8}").render()
+    return password
+
+def crear_votante_query(votante: Votante_apoyo):
+    # Esto solo se hace aqui para generar la contraseña del votante
+    pwd = generar_password()
+
+    # se crea la variable votante_db basados en el modelo Votante
+    votante_db = Votante(
+        cedula = votante.cedula,
+        nombre = votante.nombre,
+        apellidos = votante.apellidos,
+        email = votante.email,
+        celular = votante.celular,
+        fotografia = votante.fotografia,
+        password = pwd,
+        edad = votante.edad,
+    )
+
+    try: # Si la insercion sale bien nos dice "El votante se ha creado"
+        db.session.add(votante_db)
+        db.session.commit()
+        return "El votante se ha creado"
+    except: # Si no sale bien nos dice "No se ha creado el votante"
+        return "No se ha creado el votante"

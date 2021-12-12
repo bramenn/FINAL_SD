@@ -24,6 +24,7 @@ def obtener_votantes():
             "celular": votante.celular,
             "fotografia": votante.fotografia,
             "password": votante.password,
+            "edad": votante.edad
         }
 
         diccionario_votantes[votante.cedula] = votante_item
@@ -46,16 +47,11 @@ def obtener_votante(cedula: str):
 
 @router.post("/crear_votante", response_model=Dict[str, Any])
 def crear_votante(votante: Votante_apoyo):
-    print(
-        f"cedula: {votante.cedula} \n"
-        f"nombre: {votante.nombre} \n"
-        f"apellidos: {votante.apellidos} \n"
-        f"email: {votante.email} \n"
-        f"celular: {votante.celular} \n"
-        f"fotografia: {votante.fotografia} \n"
-    )
 
-    return {}
+    # Llamamos una funcion para crear un votante
+    result = crear_votante_query(votante)
+
+    return {"result":result}
 
 
 @router.put(

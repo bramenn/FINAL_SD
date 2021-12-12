@@ -15,6 +15,7 @@ class Votante(db.Base):
     celular = Column("celular", String(255))
     fotografia = Column("fotografia", String(255))
     password = Column("password", String(255))
+    edad = Column("edad", Integer)
     voto = relationship("Voto", back_populates="votante", uselist=False)
 
 
@@ -26,4 +27,4 @@ class Votante_apoyo(BaseModel):
     email: str
     celular: str
     fotografia: str
-    password: str
+    edad: int
