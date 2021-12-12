@@ -42,19 +42,13 @@ def obtener_candidato(cedula: str):
     candidato = obtener_candidato_por_cedula(cedula=cedula)
     return candidato
 
-
 @router.post("/crear_candidato", response_model=Dict[str, Any])
 def crear_candidato(candidato: Candidato_apoyo):
-    print(
-        f"cedula: {candidato.cedula} \n"
-        f"nombre: {candidato.nombre} \n"
-        f"apellidos: {candidato.apellidos} \n"
-        f"celular: {candidato.celular} \n"
-        f"email: {candidato.email} \n"
-        f"fotografia: {candidato.fotografia} \n"
-    )
 
-    return {}
+    # Llamamos una funcion para crear un candidato
+    result = crear_candidato_query(candidato)
+
+    return {"result":result}
 
 
 @router.put(
