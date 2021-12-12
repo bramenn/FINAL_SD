@@ -14,16 +14,18 @@ def obtener_elecciones_db():
 
 def obtener_eleccion_por_fecha(fecha: int):
     fecha_fin = fecha + 86399
-    eleccion = (
-        db.session.query(Eleccion)
-        .filter(Eleccion.fecha_inicio >= fecha)
-        .filter(Eleccion.fecha_inicio <= fecha_fin)
-    )
+    try:
+        eleccion = (
+            db.session.query(Eleccion)
+            .where(Eleccion.fecha_inicio >= fecha)
+            .where(Eleccion.fecha_inicio <= fecha_fin)
+        ).first()
+    except:
+        return {"result":"No se encontro ninguna eleccion para esta fecha"}
 
-    if len(eleccion) > 0:
-        return None
+    if not eleccion:
+        return {"result":"No se encontro ninguna eleccion para esta fecha"}
 
-    print(eleccion.codigo)
     eleccion_dict = {
         "codigo": eleccion.codigo,
         "fecha_inicio": eleccion.fecha_inicio,
