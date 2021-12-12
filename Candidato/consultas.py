@@ -1,4 +1,4 @@
-from Candidato.modelo import Candidato
+from Candidato.modelo import Candidato, Candidato_apoyo
 import db
 
 
