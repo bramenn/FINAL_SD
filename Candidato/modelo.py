@@ -11,7 +11,8 @@ class Candidato(db.Base):
     """Este modelo define los atributos de la tabla candidato y sus tipos de dato"""
 
     __tablename__ = "candidato"
-    cedula = Column("cedula", String(255), primary_key=True, index=True)
+    id_candidato = Column("id_candidato", String(255), primary_key=True, unique=True)
+    cedula = Column("cedula", String(255), index=True)
     nombre = Column("nombre", String(255))
     apellidos = Column("apellidos", String(255))
     celular = Column("celular", String(255))
