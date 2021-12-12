@@ -22,7 +22,7 @@ def obtener_eleccion_por_fecha(fecha: int):
             .where(Eleccion.fecha_inicio <= fecha_fin)
         ).first()
     except:
-        return {"result":"No se encontro ninguna eleccion para esta fecha"}
+        return {"result":"Error buscando eleccion"}
 
     if not eleccion:
         return {"result":"No se encontro ninguna eleccion para esta fecha"}
@@ -34,4 +34,5 @@ def obtener_eleccion_por_fecha(fecha: int):
         "nombre": eleccion.nombre,
         "descripcion": eleccion.descripcion,
     }
+    print(eleccion_dict)
     return eleccion_dict

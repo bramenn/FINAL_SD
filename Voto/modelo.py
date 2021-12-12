@@ -1,5 +1,6 @@
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql.schema import ForeignKey
+from sqlalchemy.sql.sqltypes import BigInteger
 import db
 from sqlalchemy import Column, Integer, Boolean, String
 from pydantic import BaseModel
@@ -13,7 +14,7 @@ class Voto(db.Base):
 
     __tablename__ = "voto"
     id = Column("id", String(255), primary_key=True, unique=True, index=True)
-    fecha_eleccion = Column("fecha_eleccion", String(255))
+    fecha_eleccion = Column("fecha_eleccion", BigInteger)
     cedula_votante = Column(String(255), ForeignKey("votante.cedula"))
     cedula_candidato = Column(String(255), ForeignKey("candidato.cedula"))
     # many-to-one side remains, see tip below
@@ -24,4 +25,4 @@ class Voto(db.Base):
 class Voto_apoyo(BaseModel):
     cedula_votante: str
     cedula_candidato: str
-    fecha_eleccion: str
+    fecha_eleccion: int
