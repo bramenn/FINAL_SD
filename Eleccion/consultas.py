@@ -1,3 +1,4 @@
+from datetime import datetime
 from Eleccion.modelo import Eleccion
 import db
 
@@ -28,8 +29,8 @@ def obtener_eleccion_por_fecha(fecha: int):
 
     eleccion_dict = {
         "codigo": eleccion.codigo,
-        "fecha_inicio": eleccion.fecha_inicio,
-        "fecha_fin": eleccion.fecha_fin,
+        "fecha_inicio": datetime.fromtimestamp(eleccion.fecha_inicio),
+        "fecha_fin": datetime.fromtimestamp(eleccion.fecha_fin),
         "nombre": eleccion.nombre,
         "descripcion": eleccion.descripcion,
     }

@@ -1,6 +1,9 @@
+from sqlalchemy.orm import relationship
 from sqlalchemy.sql.schema import ForeignKey
 from sqlalchemy import Column, Integer, Boolean, String
 from pydantic import BaseModel
+
+from Candidato.modelo import Candidato
 import db
 
 
@@ -13,7 +16,7 @@ class PartidoPolitico(db.Base):
     direccion = Column("direccion", String(255))
     foto_oficial = Column("foto_oficial", String(255))
     telefono = Column("telefono", String(255))
-    cedula_candidato = Column(String(255), ForeignKey("candidato.cedula"))
+    cedula_candidato = voto = relationship("Candidato")
 
 
 ## MODELO PARA RECIBIR INFORMACION DE UNA PETICION

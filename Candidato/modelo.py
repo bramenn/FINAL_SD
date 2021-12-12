@@ -1,10 +1,10 @@
 from sqlalchemy.orm import relationship
+from sqlalchemy.sql.schema import ForeignKey
 import db
 from sqlalchemy import Column, Integer, Boolean, String
 from pydantic import BaseModel
 
 from Voto.modelo import Voto
-from PartidoPolitico.modelo import PartidoPolitico
 from Eleccion.modelo import Eleccion
 
 
@@ -18,8 +18,8 @@ class Candidato(db.Base):
     celular = Column("celular", String(255))
     email = Column("email", String(255))
     fotografia = Column("fotografia", String(255))
+    nit_partido_politico = Column(String(255), ForeignKey("partido_politico.nit"))
     voto = relationship("Voto")
-    partido_politico = relationship("PartidoPolitico")
     eleccion = relationship("Eleccion")
 
 
