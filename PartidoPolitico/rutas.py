@@ -13,6 +13,7 @@ router = APIRouter()
 
 
 @router.get("/obtener_partidos_politicos", response_model=Dict[str, Any])
+"""se crea la ruta para obtener todos los partidos politicos """
 def obtener_partidos_politicos():
     partidos_politicos = obtener_partidos_politicos_db()
     diccionario_partidos_politicos = {}
@@ -27,6 +28,23 @@ def obtener_partidos_politicos():
         diccionario_partidos_politicos[partido_politico.nit] = partido_politico_item
 
     return diccionario_partidos_politicos
+
+@router.get("/obtener_partidos_politicos_descendente", response_model=Dict[str, Any])
+def obtener_partidos_politicos_descendente():
+    partidos_politicos = obtener_partidos_politicos_descendente_db()
+    diccionario_partidos_politicos = {}
+    for partido_politico in partidos_politicos:
+        partido_politico_item = {
+            "nit": partido_politico.nit,
+            "direccion": partido_politico.direccion,
+            "foto_oficial": partido_politico.foto_oficial,
+            "telefono": partido_politico.telefono,
+        }
+
+        diccionario_partidos_politicos[partido_politico.nombre] = partido_politico_item
+
+    return diccionario_partidos_politicos
+
 
 
 @router.get("/obtener_partido_politico/{nit}", response_model=Dict[str, Any])

@@ -11,8 +11,14 @@ def obtener_partidos_politicos_db():
     partido_politico = db.session.query(PartidoPolitico).all()
     return partido_politico
 
+def obtener_partidos_politicos_descendente_db():
+   """se obtienen los partidos politicos ordenados descendentemente por nombre"""
+    partido_politico = db.session.query(PartidoPolitico).order_by(PartidoPolitico.nombre.desc()).all()
+    return partido_politico
+
 
 def obtener_partido_politico_por_nit(nit: str):
+    """se obtiene un partido politico filtrado por nit"""
     partido_politico = (
         db.session.query(PartidoPolitico).where(PartidoPolitico.nit == nit).first()
     )
@@ -31,13 +37,9 @@ def obtener_partido_politico_por_nit(nit: str):
 
 
 def crear_partido_politico_query(partido_politico: PartidoPolitico_apoyo):
+    """se crea un partido politico"""
     if not obtener_partido_politico_por_nit(partido_politico.nit):
         # se crea la variable partido_politico_db basados en el modelo PartidoPolitico
-        print(partido_politico.nit)
-        print(partido_politico.nombre)
-        print(partido_politico.direccion)
-        print(partido_politico.foto_oficial)
-        print(partido_politico.telefono)
         partido_politico_db = PartidoPolitico(
             nit=partido_politico.nit,
             nombre=partido_politico.nombre,
@@ -56,6 +58,7 @@ def crear_partido_politico_query(partido_politico: PartidoPolitico_apoyo):
         return {"result": f"El partido con {partido_politico.nit} ya existe"}
 
 def eliminar_partido_politico_query(nit: str):
+    """se elimina un partido politico filtrado por nit"""
     if obtener_partido_politico_por_nit(nit):
         try:
             db.session.query(PartidoPolitico).filter(
