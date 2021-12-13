@@ -60,3 +60,14 @@ def crear_votante_query(votante: Votante_apoyo):
         return "El votante se ha creado"
     except:  # Si no sale bien nos dice "No se ha creado el votante"
         return "No se ha creado el votante"
+
+def eliminar_votante_query(cedula: str):
+    if obtener_votante_por_cedula(cedula):
+        try:
+            db.session.query(Votante).filter(Votante.cedula == cedula).delete()
+            db.session.commit()
+            return {"result": f"Eliminación del votante {cedula} correcta"}
+        except:
+            return {"result": f"Eliminación del votante {cedula} incorrecta"}
+    else:
+        return {"result": f"La cedula {cedula} no existe"}

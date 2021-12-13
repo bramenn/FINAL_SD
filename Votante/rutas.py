@@ -11,7 +11,7 @@ router = APIRouter()
 # PUT -> Actualizar
 # DELETE -> Borrar
 
-
+# ok
 @router.get("/obtener_votantes", response_model=Dict[str, Any])
 def obtener_votantes():
     votantes = obtener_votantes_db()
@@ -31,7 +31,7 @@ def obtener_votantes():
 
     return diccionario_votantes
 
-
+# ok
 @router.get("/obtener_votante/{cedula}", response_model=Dict[str, Any])
 def obtener_votante(cedula: str):
     """
@@ -44,7 +44,7 @@ def obtener_votante(cedula: str):
     votante = obtener_votante_por_cedula(cedula=cedula)
     return votante
 
-
+# ok
 @router.post("/crear_votante", response_model=Dict[str, Any])
 def crear_votante(votante: Votante_apoyo):
 
@@ -73,6 +73,6 @@ def actualizar_votante(votante: Votante_apoyo):
 @router.delete("/eliminar_votante/{cedula}")
 def eliminar_votante(cedula: str):
 
-    mensaje = f"Se elimino el votante con cedula: {cedula}"
+    msg = eliminar_votante_query(cedula)
 
-    return {"mensaje": mensaje}
+    return msg
