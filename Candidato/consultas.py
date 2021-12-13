@@ -45,18 +45,18 @@ def crear_candidato_query(candidato: Candidato_apoyo):
         codigo_eleccion=candidato.codigo_eleccion,
     )
 
-    try:  # Si la insercion sale bien nos dice "El candidato se ha creado"
-        db.session.add(candidato_bd)
-        db.session.commit()
-        return "El candidato se ha creado"
-    except:  # Si no sale bien nos dice "No se ha creado el candidato"
-        return "No se ha creado el candidato"
+    # try:  # Si la insercion sale bien nos dice "El candidato se ha creado"
+    db.session.add(candidato_bd)
+    db.session.commit()
+    return "El candidato se ha creado"
+    # except:  # Si no sale bien nos dice "No se ha creado el candidato"
+    #     return "No se ha creado el candidato"
 
 
 def eliminar_candidato_query(cedula: str):
     if obtener_candidato_por_cedula(cedula):
         try:
-            db.session.query(candidato).filter(candidato.cedula == cedula).delete()
+            db.session.query(Candidato).filter(Candidato.cedula == cedula).delete()
             db.session.commit()
             return {"result": f"Eliminación del candidato {cedula} correcta"}
         except:

@@ -48,7 +48,7 @@ def crear_partido_politico(partido_politico: PartidoPolitico_apoyo):
     # Llamamos una funcion para crear un partido politico
     result = crear_partido_politico_query(partido_politico)
 
-    return {"result": result}
+    return result
 
 
 @router.put(

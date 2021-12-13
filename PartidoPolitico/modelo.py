@@ -16,7 +16,7 @@ class PartidoPolitico(db.Base):
     direccion = Column("direccion", String(255))
     foto_oficial = Column("foto_oficial", String(255))
     telefono = Column("telefono", String(255))
-    cedula_candidato = voto = relationship("Candidato")
+    cedula_candidato = relationship("Candidato")
 
 
 ## MODELO PARA RECIBIR INFORMACION DE UNA PETICION

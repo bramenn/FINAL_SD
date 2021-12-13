@@ -16,7 +16,7 @@ class Voto(db.Base):
     id = Column("id", String(255), primary_key=True, unique=True, index=True)
     fecha_eleccion = Column("fecha_eleccion", BigInteger)
     cedula_votante = Column(String(255), ForeignKey("votante.cedula"))
-    id_candidato = Column(String(255), ForeignKey("candidato.id_candidato"))
+    id_candidato = Column(Integer, ForeignKey("candidato.id_candidato"))
     # many-to-one side remains, see tip below
     votante = relationship("Votante", back_populates="voto")
 
