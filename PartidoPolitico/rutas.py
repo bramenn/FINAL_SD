@@ -69,6 +69,6 @@ def actualizar_partido_politico(partido_politico: PartidoPolitico_apoyo):
 @router.delete("/eliminar_partido_politico/{nit}")
 def eliminar_partido_politico(nit: str):
 
-    mensaje = f"Se elimino el partido_politico con nit: {nit}"
+    msg = eliminar_partido_politico_query(nit)
 
-    return {"mensaje": mensaje}
+    return msg

@@ -61,6 +61,7 @@ def crear_votante_query(votante: Votante_apoyo):
     except:  # Si no sale bien nos dice "No se ha creado el votante"
         return "No se ha creado el votante"
 
+
 def eliminar_votante_query(cedula: str):
     if obtener_votante_por_cedula(cedula):
         try:

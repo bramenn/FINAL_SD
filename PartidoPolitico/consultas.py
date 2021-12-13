@@ -47,3 +47,17 @@ def crear_partido_politico_query(partido_politico: PartidoPolitico_apoyo):
         return "El partido_politico se ha creado"
     except:  # Si no sale bien nos dice "No se ha creado el partido_politico"
         return "No se ha creado el partido_politico"
+
+
+def eliminar_partido_politico_query(nit: str):
+    if obtener_partido_politico_por_nit(nit):
+        try:
+            db.session.query(partido_politico).filter(
+                partido_politico.nit == nit
+            ).delete()
+            db.session.commit()
+            return {"result": f"Eliminación del partido_politico {nit} correcta"}
+        except:
+            return {"result": f"Eliminación del partido_politico {nit} incorrecta"}
+    else:
+        return {"result": f"El nit {nit} no existe"}

@@ -73,6 +73,6 @@ def actualizar_candidato(candidato: Candidato_apoyo):
 @router.delete("/eliminar_candidato/{cedula}")
 def eliminar_candidato(cedula: str):
 
-    mensaje = f"Se elimino el candidato con cedula: {cedula}"
+    msg = eliminar_candidato_query(cedula)
 
-    return {"mensaje": mensaje}
+    return msg

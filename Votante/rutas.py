@@ -31,6 +31,7 @@ def obtener_votantes():
 
     return diccionario_votantes
 
+
 # ok
 @router.get("/obtener_votante/{cedula}", response_model=Dict[str, Any])
 def obtener_votante(cedula: str):
@@ -43,6 +44,7 @@ def obtener_votante(cedula: str):
 
     votante = obtener_votante_por_cedula(cedula=cedula)
     return votante
+
 
 # ok
 @router.post("/crear_votante", response_model=Dict[str, Any])
