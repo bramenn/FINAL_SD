@@ -65,8 +65,6 @@ def actualizar_candidato(candidato: Candidato_apoyo):
         f"celular: {candidato.celular} \n"
         f"email: {candidato.email} \n"
         f"fotografia: {candidato.fotografia} \n"
-        f"nit_partido_politico": candidato.nit_partido_politico,
-        f"codigo_eleccion": candidato.codigo_eleccion,
     )
 
     return {}
