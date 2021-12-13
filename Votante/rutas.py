@@ -24,7 +24,7 @@ def obtener_votantes():
             "celular": votante.celular,
             "fotografia": votante.fotografia,
             "password": votante.password,
-            "edad": votante.edad
+            "edad": votante.edad,
         }
 
         diccionario_votantes[votante.cedula] = votante_item
@@ -51,7 +51,7 @@ def crear_votante(votante: Votante_apoyo):
     # Llamamos una funcion para crear un votante
     result = crear_votante_query(votante)
 
-    return {"result":result}
+    return {"result": result}
 
 
 @router.put(

@@ -22,6 +22,7 @@ class Candidato(db.Base):
     codigo_eleccion = Column(String(255), ForeignKey("eleccion.codigo"), unique=True)
     voto = relationship("Voto")
 
+
 ## MODELO PARA RECIBIR INFORMACION DE UNA PETICION
 class Candidato_apoyo(BaseModel):
     cedula: str
@@ -30,3 +31,5 @@ class Candidato_apoyo(BaseModel):
     celular: str
     email: str
     fotografia: str
+    nit_partido_politico: str
+    codigo_eleccion: str

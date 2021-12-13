@@ -19,7 +19,6 @@ class Eleccion(db.Base):
     candidato = relationship("Candidato")
 
 
-
 ## MODELO PARA RECIBIR INFORMACION DE UNA PETICION
 class Eleccion_apoyo(BaseModel):
     codigo: str

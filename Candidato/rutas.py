@@ -24,6 +24,7 @@ def obtener_candidatos():
             "email": candidato.email,
             "fotografia": candidato.fotografia,
             "nit_partido_politico": candidato.nit_partido_politico,
+            "codigo_eleccion": candidato.codigo_eleccion,
         }
 
         diccionario_candidatos[candidato.cedula] = candidato_item
@@ -43,13 +44,14 @@ def obtener_candidato(cedula: str):
     candidato = obtener_candidato_por_cedula(cedula=cedula)
     return candidato
 
+
 @router.post("/crear_candidato", response_model=Dict[str, Any])
 def crear_candidato(candidato: Candidato_apoyo):
 
     # Llamamos una funcion para crear un candidato
     result = crear_candidato_query(candidato)
 
-    return {"result":result}
+    return {"result": result}
 
 
 @router.put(
@@ -63,6 +65,8 @@ def actualizar_candidato(candidato: Candidato_apoyo):
         f"celular: {candidato.celular} \n"
         f"email: {candidato.email} \n"
         f"fotografia: {candidato.fotografia} \n"
+        f"nit_partido_politico": candidato.nit_partido_politico,
+        f"codigo_eleccion": candidato.codigo_eleccion,
     )
 
     return {}

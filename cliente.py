@@ -23,6 +23,7 @@ def obtener_votantes():
             f"\t Contraseña: {votante_info.get('password')}"
         )
 
+
 def obtener_candidatos():
     url = "http://localhost:8000/v1/candidato/obtener_candidatos"
     resp = requests.get(url)
@@ -44,6 +45,7 @@ def obtener_candidatos():
             f"\t nit_partido_politico: {candidato_info.get('nit_partido_politico')}"
         )
 
+
 def obtener_partidos_politicos():
     url = "http://localhost:8000/v1/partido_politico/obtener_partidos_politicos"
     resp = requests.get(url)
@@ -62,6 +64,7 @@ def obtener_partidos_politicos():
             f"\t foto_oficial: {votante_info.get('foto_oficial')}"
             f"\t telefono: {votante_info.get('telefono')}"
         )
+
 
 def obtener_elecciones():
     url = "http://localhost:8000/v1/eleccion/obtener_elecciones"
@@ -82,13 +85,16 @@ def obtener_elecciones():
             f"\t descripcion: {eleccion.get('descripcion')}"
         )
 
+
 while True:
-    print("VOTANTE\n" 
-        "1-  Obtener todos los votantes\n" 
-        "2-  Obtener todos los candidatos\n" 
-        "3-  Obtener todos los partidos_politicos\n" 
+    print(
+        "VOTANTE\n"
+        "1-  Obtener todos los votantes\n"
+        "2-  Obtener todos los candidatos\n"
+        "3-  Obtener todos los partidos_politicos\n"
         "4-  Obtener todas las elecciones\n"
-        "10- Salir\n")
+        "10- Salir\n"
+    )
 
     opt = int(input("Igrese una opcion: "))
 
@@ -104,4 +110,3 @@ while True:
         break
     else:
         print("Opcion incorrecta!!")
-
