@@ -1,4 +1,4 @@
-from PartidoPolitico.modelo import PartidoPolitico
+from PartidoPolitico.modelo import PartidoPolitico, PartidoPolitico_apoyo
 import db
 
 
