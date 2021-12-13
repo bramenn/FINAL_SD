@@ -1,13 +1,27 @@
 # INSERTAMOS VOTANTES
 INSERT INTO votante (cedula, nombre, apellidos, email, celular, fotografia, password, edad) VALUES ('1088', 'Monica', 'Largo', 'monica@utp.edu.co', '3333333333', 'hermosa.jpeg', 'saimons98', 18);
 INSERT INTO votante (cedula, nombre, apellidos, email, celular, fotografia, password, edad) VALUES ('1225', 'Alejandro', 'Herrera', 'alejandro@utp.edu.co', '444444444', 'guapurita.jpeg', 'melashaco', 17);
-
+INSERT INTO votante (cedula, nombre, apellidos, email, celular, fotografia, password, edad) VALUES ('1089', 'Monica', 'Largo', 'monica@utp.edu.co', '3333333333', 'hermosa.jpeg', 'saimons98', 29);
+INSERT INTO votante (cedula, nombre, apellidos, email, celular, fotografia, password, edad) VALUES ('1226', 'Alejandro', 'Herrera', 'alejandro@utp.edu.co', '444444444', 'guapurita.jpeg', 'melashaco', 20);
 
 # INSERTAMOS PARTIDOS_POLITICOS
 INSERT INTO partido_politico (nit, nombre, direccion, foto_oficial, telefono) VALUES ('001', 'Moviento Naranja', 'Medallollin', 'Mandarina', '3335656');
+INSERT INTO partido_politico (nit, nombre, direccion, foto_oficial, telefono) VALUES ('002', 'America de Cali', 'Medallollin', 'Mandarina', '3335656');
+INSERT INTO partido_politico (nit, nombre, direccion, foto_oficial, telefono) VALUES ('003', 'Partido verde', 'Medallollin', 'Mandarina', '3335656');
+INSERT INTO partido_politico (nit, nombre, direccion, foto_oficial, telefono) VALUES ('004', 'Centro esperanza', 'Medallollin', 'Mandarina', '3335656');
+INSERT INTO partido_politico (nit, nombre, direccion, foto_oficial, telefono) VALUES ('005', 'Capuchos', 'Medallollin', 'Mandarina', '3335656');
+INSERT INTO partido_politico (nit, nombre, direccion, foto_oficial, telefono) VALUES ('006', 'Uriberrimos Naranja', 'Medallollin', 'Mandarina', '3335656');
 
 # INSERTAMOS CANDIDATOS
-INSERT INTO candidato (id_candidato, cedula, nombre, apellidos, celular, email, fotografia, nit_partido_politico, codigo_eleccion) VALUES ('0', '666', 'Urube', 'Uberrimo', '66666666', 'paraco@gmail.rrr', '6404.png', '001', '54sdx5s');
+INSERT INTO candidato (id_candidato, cedula, nombre, apellidos, celular, email, fotografia, nit_partido_politico, codigo_eleccion) VALUES ('0', '666', 'Urube', 'Uberrimo', '3333333', 'paraco@gmail.rrr', '6404.png', '004', '54sdx5s');
+INSERT INTO candidato (id_candidato, cedula, nombre, apellidos, celular, email, fotografia, nit_partido_politico, codigo_eleccion) VALUES ('1', '666', 'Urube', 'Uberrimo', '3333333', 'paraco@gmail.rrr', '6404.png', '005', '54sdx5z');
+INSERT INTO candidato (id_candidato, cedula, nombre, apellidos, celular, email, fotografia, nit_partido_politico, codigo_eleccion) VALUES ('2', '444', 'Petra', 'Uberrimo', '777777', 'paraco@gmail.rrr', '6404.png', '001', '54sdx5s');
+INSERT INTO candidato (id_candidato, cedula, nombre, apellidos, celular, email, fotografia, nit_partido_politico, codigo_eleccion) VALUES ('3', '333', 'Cansino', 'Uberrimo', '888888', 'paraco@gmail.rrr', '6404.png', '002', '54srx5s');
+INSERT INTO candidato (id_candidato, cedula, nombre, apellidos, celular, email, fotografia, nit_partido_politico, codigo_eleccion) VALUES ('4', '222', 'Fufocha', 'Uberrimo', '5555555', 'paraco@gmail.rrr', '6404.png', '003', '54aadx5s');
 
 # INSERTAMOS ELECCIONES
-INSERT INTO eleccion (codigo, fecha_inicio, fecha_fin, nombre, descripcion) VALUES ('54sdx5s', 15665288400, 15665374799, 'Presidenciales', 'El robo mas grande del planeta');
+INSERT INTO eleccion (codigo, fecha_inicio, fecha_fin, nombre, descripcion) VALUES ('54sdx5s', 11665288400, 11665374799, 'Presidenciales', 'El robo mas grande del planeta');
+INSERT INTO eleccion (codigo, fecha_inicio, fecha_fin, nombre, descripcion) VALUES ('54sdx5z', 12665288400, 12665374799, 'Alcaldia', 'El robo mas grande del planeta');
+INSERT INTO eleccion (codigo, fecha_inicio, fecha_fin, nombre, descripcion) VALUES ('54srx5s', 13665288400, 13665374799, 'Consejo', 'El robo mas grande del planeta');
+INSERT INTO eleccion (codigo, fecha_inicio, fecha_fin, nombre, descripcion) VALUES ('52sdx5s', 14665288400, 14665374799, 'Juventud', 'El robo mas grande del planeta');
+INSERT INTO eleccion (codigo, fecha_inicio, fecha_fin, nombre, descripcion) VALUES ('54aadx5s', 15665288400, 15665374799, 'Senado', 'El robo mas grande del planeta');

@@ -13,7 +13,7 @@ def obtener_votantes_db():
     votante = db.session.query(Votante).all()
     return votante
 
-def obtener_votantes_mayores_18_db(edad: int):
+def obtener_votantes_mayores_18_db():
     """se obtienen los votantes mayores a 18 años"""
     votantes = db.session.query(Votante).where(Votante.edad >= 18).all()
 
@@ -22,7 +22,7 @@ def obtener_votantes_mayores_18_db(edad: int):
 
     return votantes
 
-def obtener_promedio_edad_votantes_db(edad: int):
+def obtener_promedio_edad_votantes_db():
     """se obtiene el promedio de las edades de los votantes"""
     lista_votantes = obtener_votantes_db()
     lista_votantes_edades = []
@@ -33,7 +33,7 @@ def obtener_promedio_edad_votantes_db(edad: int):
             lista_votantes_edades.append(votante.edad)
         promedio_edad = sum(lista_votantes_edades)/len(lista_votantes_edades)
         votantes = db.session.query(Votante).where(Votante.edad > promedio_edad).all()
-        
+
         if not votantes:
             return None
 
@@ -41,7 +41,7 @@ def obtener_promedio_edad_votantes_db(edad: int):
 
     return None
 
-def obtener_votantes_entre_18_27_db(edad: int):
+def obtener_votantes_entre_18_27_db():
     """se obtienen los votantes con edades entre 18 y 27 años"""
     votantes = (
                 db.session.query(Votante)

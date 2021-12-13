@@ -11,9 +11,9 @@ def obtener_partidos_politicos_db():
     partido_politico = db.session.query(PartidoPolitico).all()
     return partido_politico
 
-def obtener_partidos_politicos_descendente_db():
-   """se obtienen los partidos politicos ordenados descendentemente por nombre"""
-    partido_politico = db.session.query(PartidoPolitico).order_by(PartidoPolitico.nombre.desc()).all()
+def obtener_partidos_politicos_ascendente_db():
+    """se obtienen los partidos politicos ordenados descendentemente por nombre"""
+    partido_politico = db.session.query(PartidoPolitico).order_by(PartidoPolitico.nombre.asc()).all()
     return partido_politico
 
 
