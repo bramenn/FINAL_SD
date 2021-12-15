@@ -18,13 +18,10 @@ def obtener_elecciones():
     if elecciones:
         diccionario_elecciones = {}
         for eleccion in elecciones:
-            # CONVERTIMOS LA FECHAS GUARDADAS EN FECHAS HUMANAS
-            eleccion.fecha_inicio = datetime.fromtimestamp(eleccion.fecha_inicio)
-            eleccion.fecha_fin = datetime.fromtimestamp(eleccion.fecha_fin)
-
             eleccion_item = {
-                "fecha_inicio": eleccion.fecha_inicio,
-                "fecha_fin": eleccion.fecha_fin,
+                "fecha_eleccion": eleccion.fecha_eleccion,
+                "fecha_inicio": eleccion.hora_inicio,
+                "fecha_fin": eleccion.hora_fin,
                 "nombre": eleccion.nombre,
                 "descripcion": eleccion.descripcion,
             }
@@ -38,12 +35,7 @@ def obtener_elecciones():
 # NO ANDA
 @router.get("/obtener_eleccion/{fecha}", response_model=Dict[str, Any])
 def obtener_eleccion(fecha: str):
-    """Esta ruta obtiene una elccion por fecha"""
-    # date_time = datetime.strptime(fecha, "%d/%m/%Y %H:%M:%S")
-    # Formateamos la fecha entrante en dia/mes/año
-    date_time = datetime.strptime(fecha, "%d-%m-%Y")
-    # Convertimos la fecha en timestamp
-    fecha = datetime.timestamp(date_time)
+    """Esta ruta obtiene una elccion por fecha {"%d-%m-%Y"}"""
     eleccion = obtener_eleccion_por_fecha(fecha)
     return eleccion
 
@@ -51,13 +43,5 @@ def obtener_eleccion(fecha: str):
 @router.post("/crear_eleccion", response_model=Dict[str, Any])
 def crear_eleccion(eleccion: Eleccion_apoyo):
     """Esta ruta crea una eleccion"""
-    print(
-        f"codigo: {eleccion.codigo} \n"
-        f"fecha: {eleccion.fecha} \n"
-        f"hora_inicio: {eleccion.hora_inicio} \n"
-        f"hora_fin: {eleccion.hora_fin} \n"
-        f"nombre: {eleccion.nombre} \n"
-        f"descripcion: {eleccion.descripcion} \n"
-    )
-
-    return {}
+    result = crear_eleccion_query(eleccion)
+    return result
