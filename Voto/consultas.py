@@ -29,7 +29,7 @@ def obtener_votos_por_cedula_candidato(cedula_candidato: str):
 
 def obtener_votos_por_cedula_votante(cedula_votante: str):
     """Se obtienen todos los votos generados de un votante por su cedula"""
-    votos = db.session.query(Voto).where(Voto.cedula_votante == cedula_votante).first()
+    votos = db.session.query(Voto).where(Voto.cedula_votante == cedula_votante).all()
 
     if not votos:
         return None

@@ -34,6 +34,24 @@ def obtener_candidato_por_cedula(cedula: str):
     }
     return candidato_dict
 
+def obtener_candidato_por_id(id_candidato: str):
+    """se obtiene un candidato con el numero de la id_candidato"""
+    candidato = db.session.query(Candidato).where(Candidato.id_candidato == id_candidato).first()
+
+    if not candidato:
+        return None
+
+    candidato_dict = {
+        "cedula": candidato.cedula,
+        "nombre": candidato.nombre,
+        "apellidos": candidato.apellidos,
+        "email": candidato.email,
+        "celular": candidato.celular,
+        "fotografia": candidato.fotografia,
+        "nit_partido_politico": candidato.nit_partido_politico,
+        "codigo_eleccion": candidato.codigo_eleccion,
+    }
+    return candidato_dict
 
 def obtener_candidato_por_codigo_eleccion(codigo_eleccion: str):  # TODO CORREGIR A PLURAL
     """se obtiene un candidato con el numero de la codigo_eleccion"""
@@ -54,7 +72,7 @@ def obtener_candidatos_por_fecha_query(fecha_eleccion: str):
         return None
 
     candidatos = (
-        db.session.query(Candidato).where(Candidato.codigo_eleccion == eleccion.codigo)
+        db.session.query(Candidato).where(Candidato.codigo_eleccion == eleccion.get("codigo"))
     ).all()
 
     if not candidatos:

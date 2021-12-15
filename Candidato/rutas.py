@@ -36,7 +36,8 @@ def obtener_candidatos():
 def obtener_candidatos_por_fecha(fecha_eleccion: str):
     """Esta ruta obtiene todos los candidatos registrados"""
     candidatos = obtener_candidatos_por_fecha_query(fecha_eleccion)
-    if not candidatos:
+    print(candidatos)
+    if candidatos:
         diccionario_candidatos = {}
         for candidato in candidatos:
             candidato_item = {
