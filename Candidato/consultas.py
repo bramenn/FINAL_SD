@@ -32,10 +32,27 @@ def obtener_candidato_por_cedula(cedula: str):
     return candidato_dict
 
 
+def candidado_ya_existe_en_eleccion(cedula: str, codigo_eleccion: str):
+    """Verifica si un candidato x ya existe e una eleccion y"""
+    candidato = (
+        db.session.query(Candidato)
+        .where(Candidato.cedula == cedula)
+        .where(Candidato.codigo_eleccion == codigo_eleccion)
+    ).all()
+
+    if not candidato:
+        return False
+
+    return True
+
+
 def crear_candidato_query(candidato: Candidato_apoyo):
     """se crea un candidato"""
-    if not obtener_candidato_por_cedula(candidato.cedula):
-    # se crea la variable candidato_bd basados en el modelo candidato
+    response_candidato_eleccion = candidado_ya_existe_en_eleccion(
+        candidato.cedula, candidato.codigo_eleccion
+    )
+    if not response_candidato_eleccion:
+        # se crea la variable candidato_bd basados en el modelo candidato
         candidato_bd = Candidato(
             cedula=candidato.cedula,
             nombre=candidato.nombre,
@@ -54,7 +71,7 @@ def crear_candidato_query(candidato: Candidato_apoyo):
         except:  # Si no sale bien nos dice "No se ha creado el candidato"
             return "No se ha creado el candidato"
     else:
-        return {"result": f"El candidato con {candidato.cedula} ya existe"}
+        return f"El candidato con {candidato.cedula} ya existe para esa eleccion {candidato.codigo_eleccion}"
 
 
 def eliminar_candidato_query(cedula: str):

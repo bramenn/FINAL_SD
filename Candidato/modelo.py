@@ -19,7 +19,7 @@ class Candidato(db.Base):
     email = Column("email", String(255))
     fotografia = Column("fotografia", String(255))
     nit_partido_politico = Column(String(255), ForeignKey("partido_politico.nit"))
-    codigo_eleccion = Column(String(255), ForeignKey("eleccion.codigo"), unique=True)
+    codigo_eleccion = Column(String(255), ForeignKey("eleccion.codigo"))
     voto = relationship("Voto")
 
 

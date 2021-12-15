@@ -1,4 +1,5 @@
 from datetime import datetime
+from os import error
 from Eleccion.modelo import Eleccion, Eleccion_apoyo
 import db
 
@@ -26,7 +27,7 @@ def obtener_eleccion_por_fecha(fecha: str):
         return {"result": "Error buscando eleccion"}
 
     if not eleccion:
-        return {"result": f"No se encontro ninguna eleccion para esta fecha {eleccion_fecha}"}
+        return None
 
     eleccion_dict = {
         "codigo": eleccion.codigo,
@@ -46,6 +47,7 @@ def crear_eleccion_query(eleccion: Eleccion_apoyo):
 
     # Verificamos que la eleecion no exista
     eleccion_en_db = obtener_eleccion_por_fecha(eleccion.fecha_eleccion)
+    print(eleccion_en_db)
     if not eleccion_en_db:
         # Condicion para que la hora no sea fuera del formato de 24h
         if 23 >= eleccion.hora_inicio >= 0 and 23 >= eleccion.hora_fin >= 0:
@@ -61,8 +63,8 @@ def crear_eleccion_query(eleccion: Eleccion_apoyo):
                 db.session.add(eleccion_db)
                 db.session.commit()
                 return {"result": "La eleccion se ha creado"}
-            except:  # Si no sale bien nos dice "No se ha creado el votante"
-                return {"result": "La eleccion no se ha creado"}
+            except error:  # Si no sale bien nos dice "No se ha creado el votante"
+                return {"result": "La eleccion no se ha creado {error}"}
         else:
             return {"result": "La eleccion no se ha creado, porque envio una hora invalida"}
     else:

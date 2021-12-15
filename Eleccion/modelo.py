@@ -15,8 +15,8 @@ class Eleccion(db.Base):
     __tablename__ = "eleccion"
     codigo = Column("codigo", String(255), primary_key=True, unique=True, index=True)
     fecha_eleccion = Column("fecha_eleccion", DateTime)
-    hora_inicio = Column("hora_inicio", Integer, unique=True)
-    hora_fin = Column("hora_fin", Integer, unique=True)
+    hora_inicio = Column("hora_inicio", Integer)
+    hora_fin = Column("hora_fin", Integer)
     nombre = Column("nombre", String(255))
     descripcion = Column("descripcion", String(255))
     candidato = relationship("Candidato")
