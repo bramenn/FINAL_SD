@@ -123,16 +123,9 @@ def crear_votante(votante: Votante_apoyo):
 
 @router.put("/actualizar_votante",)
 def actualizar_votante(votante: Votante_apoyo):
-    print(
-        f"cedula: {votante.cedula} \n"
-        f"nombre: {votante.nombre} \n"
-        f"apellidos: {votante.apellidos} \n"
-        f"email: {votante.email} \n"
-        f"celular: {votante.celular} \n"
-        f"fotografia: {votante.fotografia} \n"
-    )
+    msg = actualizar_votante_query(votante)
 
-    return {}
+    return {"result": msg}
 
 
 @router.delete("/eliminar_votante/{cedula}")

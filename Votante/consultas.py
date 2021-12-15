@@ -118,3 +118,31 @@ def eliminar_votante_query(cedula: str):
             return {"result": f"Eliminación del votante {cedula} incorrecta"}
     else:
         return {"result": f"La cedula {cedula} no existe"}
+
+
+def actualizar_votante_query(votante: Votante_apoyo):
+
+    # Obtenemos el votante
+    votante_db = obtener_votante_por_cedula(votante.cedula)
+
+    if not votante_db:
+        return f"El votante {votante.cedula} no existe y no se puede actualizar."
+
+
+    # votante_db["cedula"] = votante.cedula
+    votante_db["nombre"] = votante.nombre
+    votante_db["apellidos"] = votante.apellidos
+    votante_db["email"] = votante.email
+    votante_db["celular"] = votante.celular
+    votante_db["fotografia"] = votante.fotografia
+    votante_db["edad"] = votante.edad
+
+    try:
+        db.session.query(Votante).update(votante_db)
+        db.session.commit()
+        return f"El votante {votante.cedula} fue correctamente actualizado."
+    except:
+        return f"El votante {votante.celular} no fue actualizado por un error."
+
+
+
