@@ -67,7 +67,7 @@ def eliminar_partido_politico_query(nit: str):
             db.session.commit()
             return {"result": f"Eliminación del partido_politico {nit} correcta"}
         except:
-            return {"result": f"Eliminación del partido_politico {nit} incorrecta"}
+            return {"result": f"Eliminación del partido_politico {nit} incorrecta ya que contiene candidatos registrados"}
     else:
         return {"result": f"El nit {nit} no existe"}
 

@@ -16,6 +16,18 @@ def obtener_elecciones_db():
     return eleccions
 
 
+def obtener_elecciones_db_fecha_descendente():
+    """
+    Obtener todas las eleciones
+    query:
+        select * from eleccion;
+    """
+    eleccions = db.session.query(Eleccion).order_by(Eleccion.fecha_eleccion.desc()).all()
+    if not eleccions:
+        return None
+    return eleccions
+
+
 def obtener_eleccion_por_fecha(fecha: str):
     """Se obtiene una eleccion por fecha"""
     eleccion_fecha = datetime.strptime(fecha, "%d-%m-%Y")
@@ -39,12 +51,11 @@ def obtener_eleccion_por_fecha(fecha: str):
     }
     return eleccion_dict
 
+
 def obtener_eleccion_por_codigo(codigo: str):
     """Se obtiene una eleccion por codigo"""
     try:
-        eleccion = (
-            db.session.query(Eleccion).where(Eleccion.codigo == codigo)
-        ).first()
+        eleccion = (db.session.query(Eleccion).where(Eleccion.codigo == codigo)).first()
     except:
         return {"result": "Error buscando eleccion"}
 
@@ -67,10 +78,13 @@ def crear_eleccion_query(eleccion: Eleccion_apoyo):
     # ponemos la fecha eleccion en el formato esperado por la bd
     eleccion_fecha = datetime.strptime(eleccion.fecha_eleccion, "%d-%m-%Y")
 
-    # Verificamos que la eleecion no exista
-    eleccion_en_db = obtener_eleccion_por_fecha(eleccion.fecha_eleccion)
-    print(eleccion_en_db)
-    if not eleccion_en_db:
+    if not (eleccion_fecha >= datetime.now()):
+        return f"No se puede crear esta eleccion porque la fecha {eleccion.fecha_eleccion} ya paso"
+    # Verificamos que la eleccion no exista
+    eleccion_en_db_fecha = obtener_eleccion_por_fecha(eleccion.fecha_eleccion)
+    eleccion_en_db_codigo = obtener_eleccion_por_codigo(eleccion.codigo)
+
+    if not (eleccion_en_db_fecha or eleccion_en_db_codigo):
         # Condicion para que la hora no sea fuera del formato de 24h
         if 23 >= eleccion.hora_inicio >= 0 and 23 >= eleccion.hora_fin >= 0:
             eleccion_db = Eleccion(
@@ -84,10 +98,10 @@ def crear_eleccion_query(eleccion: Eleccion_apoyo):
             try:  # Si la insercion sale bien nos dice "El votante se ha creado"
                 db.session.add(eleccion_db)
                 db.session.commit()
-                return {"result": "La eleccion se ha creado"}
+                return "La eleccion se ha creado"
             except error:  # Si no sale bien nos dice "No se ha creado el votante"
-                return {"result": "La eleccion no se ha creado {error}"}
+                return "La eleccion no se ha creado {error}"
         else:
-            return {"result": "La eleccion no se ha creado, porque envio una hora invalida"}
+            return "La eleccion no se ha creado, porque envio una hora invalida"
     else:
-        return {"result": f"La eleccion con fecha {eleccion_fecha}  ya existe"}
+        return f"La eleccion con fecha {eleccion_fecha} ó codigo {eleccion.codigo} ya existe"

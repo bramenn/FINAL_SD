@@ -40,6 +40,27 @@ def obtener_candidato(cedula: str):
     candidato = obtener_candidato_por_cedula(cedula=cedula)
     return candidato
 
+@router.get("/obtener_candidato_codigo_eleccion/{codigo_eleccion}", response_model=Dict[str, Any])
+def obtener_candidato(codigo_eleccion: str):
+    """ Esta es la ruta obtiene un candidato con el numero de la codigo_eleccion"""
+
+    candidatos = obtener_candidato_por_codigo_eleccion(codigo_eleccion=codigo_eleccion)
+    diccionario_candidatos = {}
+    for candidato in candidatos:
+        candidato_item = {
+            "nombre": candidato.nombre,
+            "apellidos": candidato.apellidos,
+            "celular": candidato.celular,
+            "email": candidato.email,
+            "fotografia": candidato.fotografia,
+            "nit_partido_politico": candidato.nit_partido_politico,
+            "codigo_eleccion": candidato.codigo_eleccion,
+        }
+
+        diccionario_candidatos[candidato.cedula] = candidato_item
+
+    return diccionario_candidatos
+    return candidato
 
 @router.post("/crear_candidato", response_model=Dict[str, Any])
 def crear_candidato(candidato: Candidato_apoyo):

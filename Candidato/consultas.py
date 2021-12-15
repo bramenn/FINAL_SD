@@ -35,7 +35,19 @@ def obtener_candidato_por_cedula(cedula: str):
     return candidato_dict
 
 
-def candidado_ya_existe_en_eleccion(cedula: str, codigo_eleccion: str , aux: Boolean = False):
+def obtener_candidato_por_codigo_eleccion(codigo_eleccion: str):
+    """se obtiene un candidato con el numero de la codigo_eleccion"""
+    candidatos = (
+        db.session.query(Candidato).where(Candidato.codigo_eleccion == codigo_eleccion).all()
+    )
+
+    if not candidatos:
+        return None
+
+    return candidatos
+
+
+def candidado_ya_existe_en_eleccion(cedula: str, codigo_eleccion: str, aux: Boolean = False):
     """Verifica si un candidato x ya existe e una eleccion y"""
     candidato = (
         db.session.query(Candidato)
@@ -104,6 +116,7 @@ def eliminar_candidato_query(cedula: str):
     else:
         return {"result": f"La cedula {cedula} no existe"}
 
+
 def actualizar_candidato_query(candidato: Candidato_apoyo):
 
     # Obtenemos el candidato
@@ -135,4 +148,3 @@ def actualizar_candidato_query(candidato: Candidato_apoyo):
         return f"El candidato {candidato.cedula} fue correctamente actualizado."
     except:
         return f"El candidato {candidato.cedula} no fue actualizado por un error."
-
