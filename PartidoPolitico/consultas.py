@@ -70,3 +70,26 @@ def eliminar_partido_politico_query(nit: str):
             return {"result": f"Eliminación del partido_politico {nit} incorrecta"}
     else:
         return {"result": f"El nit {nit} no existe"}
+
+def actualizar_partido_politico_query(partido_politico: PartidoPolitico_apoyo):
+
+    # Obtenemos el partido_politico
+    partido_politico_db = obtener_partido_politico_por_nit(partido_politico.nit)
+
+    if not partido_politico_db:
+        return f"El partido_politico {partido_politico.nit} no existe y no se puede actualizar."
+
+
+    # partido_politico_db["nit"] = partido_politico.nit
+    partido_politico_db["nombre"] = partido_politico.nombre
+    partido_politico_db["direccion"] = partido_politico.direccion
+    partido_politico_db["foto_oficial"] = partido_politico.foto_oficial
+    partido_politico_db["telefono"] = partido_politico.telefono
+
+    try:
+        db.session.query(PartidoPolitico).update(partido_politico_db)
+        db.session.commit()
+        return f"El partido_politico {partido_politico.nit} fue correctamente actualizado."
+    except:
+        return f"El partido_politico {partido_politico.nit} no fue actualizado por un error."
+

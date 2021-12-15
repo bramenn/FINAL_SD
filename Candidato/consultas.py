@@ -1,5 +1,7 @@
 from sqlalchemy.sql.sqltypes import Boolean
 from Candidato.modelo import Candidato, Candidato_apoyo
+from PartidoPolitico.consultas import *
+from Eleccion.consultas import *
 import db
 
 
@@ -101,3 +103,36 @@ def eliminar_candidato_query(cedula: str):
             return {"result": f"Eliminación del candidato {cedula} incorrecta"}
     else:
         return {"result": f"La cedula {cedula} no existe"}
+
+def actualizar_candidato_query(candidato: Candidato_apoyo):
+
+    # Obtenemos el candidato
+    candidato_db = obtener_candidato_por_cedula(candidato.cedula)
+    partido_politico_db = obtener_partido_politico_por_nit(candidato.nit_partido_politico)
+    eleccion_db = obtener_eleccion_por_fecha(candidato.codigo_eleccion)
+
+    if not candidato_db:
+        return f"El candidato {candidato.cedula} no existe y no se puede actualizar."
+    
+    if not partido_politico_db:
+        return f"El partido politico {candidato.nit_partido_politico} no existe y no se puede actualizar."
+
+    if not eleccion_db:
+        return f"La eleccion {candidato.codigo_eleccion} no existe y no se puede actualizar."
+
+    # candidato_db["cedula"] = candidato.cedula
+    candidato_db["nombre"] = candidato.nombre
+    candidato_db["apellidos"] = candidato.apellidos
+    candidato_db["email"] = candidato.email
+    candidato_db["celular"] = candidato.celular
+    candidato_db["fotografia"] = candidato.fotografia
+    candidato_db["nit_partido_politico"] = candidato.nit_partido_politico
+    candidato_db["codigo_eleccion"] = candidato.codigo_eleccion
+
+    try:
+        db.session.query(Candidato).update(candidato_db)
+        db.session.commit()
+        return f"El candidato {candidato.cedula} fue correctamente actualizado."
+    except:
+        return f"El candidato {candidato.cedula} no fue actualizado por un error."
+

@@ -142,7 +142,7 @@ def actualizar_votante_query(votante: Votante_apoyo):
         db.session.commit()
         return f"El votante {votante.cedula} fue correctamente actualizado."
     except:
-        return f"El votante {votante.celular} no fue actualizado por un error."
+        return f"El votante {votante.cedula} no fue actualizado por un error."
 
 
 

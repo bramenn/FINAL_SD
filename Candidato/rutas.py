@@ -51,20 +51,11 @@ def crear_candidato(candidato: Candidato_apoyo):
     return {"result": result}
 
 
-@router.put(
-    "/actualizar_candidato",
-)
-def actualizar_candidato(candidato: Candidato_apoyo):
-    print(
-        f"cedula: {candidato.cedula} \n"
-        f"nombre: {candidato.nombre} \n"
-        f"apellidos: {candidato.apellidos} \n"
-        f"celular: {candidato.celular} \n"
-        f"email: {candidato.email} \n"
-        f"fotografia: {candidato.fotografia} \n"
-    )
+@router.put("/actualizar_candidato",)
+def actualizar_candidato(votacandidatonte: Candidato_apoyo):
+    msg = actualizar_candidato_query(candidato)
 
-    return {}
+    return {"result": msg}
 
 
 @router.delete("/eliminar_candidato/{cedula}")
