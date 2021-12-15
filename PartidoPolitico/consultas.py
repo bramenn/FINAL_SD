@@ -18,7 +18,7 @@ def obtener_partidos_politicos_ascendente_db():
 
 
 def obtener_partido_politico_por_nit(nit: str):
-    """se obtiene un partido politico filtrado por nit"""
+    """se obtiene un partido politico por nit"""
     partido_politico = (
         db.session.query(PartidoPolitico).where(PartidoPolitico.nit == nit).first()
     )

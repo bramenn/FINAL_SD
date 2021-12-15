@@ -16,6 +16,7 @@ def obtener_elecciones_db():
 
 
 def obtener_eleccion_por_fecha(fecha: int):
+    """Se obtiene una eleccion por fecha"""
     fecha_fin = fecha + 86399
     try:
         eleccion = (

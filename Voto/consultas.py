@@ -13,6 +13,7 @@ def obtener_votos_db():
 
 
 def obtener_votos_por_cedula_candidato(cedula_candidato: str):
+    """Se obtienen todos los votos obtenidos de un candidato por su cedula"""
     votos = db.session.query(Voto).where(Voto.cedula_candidato == cedula_candidato)
 
     if not votos:
@@ -22,6 +23,7 @@ def obtener_votos_por_cedula_candidato(cedula_candidato: str):
 
 
 def obtener_votos_por_cedula_votante(cedula_votante: str):
+    """Se obtienen todos los votos generados de un votante por su cedula"""
     votos = db.session.query(Voto).where(Voto.cedula_votante == cedula_votante)
 
     if not votos:
@@ -32,6 +34,7 @@ def obtener_votos_por_cedula_votante(cedula_votante: str):
 
 # TERMINAR FECHA ELECCION COMO TIMESTAMP -- UTILIZANDO LA LIBRERIA DATETIME Y DATETIME.TIMESTAMP
 def obtener_votos_por_fecha_eleccion(fecha_eleccion: str):
+    """se obtienen todos los votos de una eleccion por fecha"""
     votos = db.session.query(Voto).where(Voto.fecha_eleccion == fecha_eleccion)
 
     if not votos:

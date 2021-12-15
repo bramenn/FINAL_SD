@@ -13,6 +13,7 @@ router = APIRouter()
 
 @router.get("/obtener_elecciones", response_model=Dict[str, Any])
 def obtener_elecciones():
+    """Esta ruta obtiene todas las elecciones"""
     elecciones = obtener_elecciones_db()
     if elecciones:
         diccionario_elecciones = {}
@@ -37,6 +38,7 @@ def obtener_elecciones():
 # NO ANDA
 @router.get("/obtener_eleccion/{fecha}", response_model=Dict[str, Any])
 def obtener_eleccion(fecha: str):
+    """Esta ruta obtiene una elccion por fecha"""
     # date_time = datetime.strptime(fecha, "%d/%m/%Y %H:%M:%S")
     # Formateamos la fecha entrante en dia/mes/año
     date_time = datetime.strptime(fecha, "%d-%m-%Y")
@@ -48,6 +50,7 @@ def obtener_eleccion(fecha: str):
 
 @router.post("/crear_eleccion", response_model=Dict[str, Any])
 def crear_eleccion(eleccion: Eleccion_apoyo):
+    """Esta ruta crea una eleccion"""
     print(
         f"codigo: {eleccion.codigo} \n"
         f"fecha: {eleccion.fecha} \n"

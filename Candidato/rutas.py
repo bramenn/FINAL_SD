@@ -14,6 +14,7 @@ router = APIRouter()
 
 @router.get("/obtener_candidatos", response_model=Dict[str, Any])
 def obtener_candidatos():
+    """Esta ruta obtiene todos los candidatos registrados"""
     candidatos = obtener_candidatos_db()
     diccionario_candidatos = {}
     for candidato in candidatos:
@@ -34,12 +35,7 @@ def obtener_candidatos():
 
 @router.get("/obtener_candidato/{cedula}", response_model=Dict[str, Any])
 def obtener_candidato(cedula: str):
-    """
-    Esta es la ruta para obtener un candidato
-
-        candidato
-
-    """
+    """ Esta es la ruta obtiene un candidato con el numero de la cedula"""
 
     candidato = obtener_candidato_por_cedula(cedula=cedula)
     return candidato
@@ -47,6 +43,7 @@ def obtener_candidato(cedula: str):
 
 @router.post("/crear_candidato", response_model=Dict[str, Any])
 def crear_candidato(candidato: Candidato_apoyo):
+    """Esta ruta crea un candidato"""
 
     # Llamamos una funcion para crear un candidato
     result = crear_candidato_query(candidato)
@@ -72,7 +69,7 @@ def actualizar_candidato(candidato: Candidato_apoyo):
 
 @router.delete("/eliminar_candidato/{cedula}")
 def eliminar_candidato(cedula: str):
-
+    """Esta ruta elimina un candidato con el numero de la cedula"""
     msg = eliminar_candidato_query(cedula)
 
     return msg

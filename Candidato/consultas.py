@@ -13,6 +13,7 @@ def obtener_candidatos_db():
 
 
 def obtener_candidato_por_cedula(cedula: str):
+    """se obtiene un candidato con el numero de la cedula"""
     candidato = db.session.query(Candidato).where(Candidato.cedula == cedula).first()
 
     if not candidato:
@@ -32,6 +33,7 @@ def obtener_candidato_por_cedula(cedula: str):
 
 
 def crear_candidato_query(candidato: Candidato_apoyo):
+    """se crea un candidato"""
     if not obtener_candidato_por_cedula(candidato.cedula):
     # se crea la variable candidato_bd basados en el modelo candidato
         candidato_bd = Candidato(
@@ -56,6 +58,7 @@ def crear_candidato_query(candidato: Candidato_apoyo):
 
 
 def eliminar_candidato_query(cedula: str):
+    """se elimina un candidato con el numero de la cedula"""
     if obtener_candidato_por_cedula(cedula):
         try:
             db.session.query(Candidato).filter(Candidato.cedula == cedula).delete()
