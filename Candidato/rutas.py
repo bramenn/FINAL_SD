@@ -52,7 +52,7 @@ def crear_candidato(candidato: Candidato_apoyo):
 
 
 @router.put("/actualizar_candidato",)
-def actualizar_candidato(votacandidatonte: Candidato_apoyo):
+def actualizar_candidato(candidato: Candidato_apoyo):
     msg = actualizar_candidato_query(candidato)
 
     return {"result": msg}

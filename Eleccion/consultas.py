@@ -39,6 +39,28 @@ def obtener_eleccion_por_fecha(fecha: str):
     }
     return eleccion_dict
 
+def obtener_eleccion_por_codigo(codigo: str):
+    """Se obtiene una eleccion por codigo"""
+    try:
+        eleccion = (
+            db.session.query(Eleccion).where(Eleccion.codigo == codigo)
+        ).first()
+    except:
+        return {"result": "Error buscando eleccion"}
+
+    if not eleccion:
+        return None
+
+    eleccion_dict = {
+        "codigo": eleccion.codigo,
+        "fecha_eleccion": eleccion.fecha_eleccion,
+        "fecha_inicio": eleccion.hora_inicio,
+        "fecha_fin": eleccion.hora_fin,
+        "nombre": eleccion.nombre,
+        "descripcion": eleccion.descripcion,
+    }
+    return eleccion_dict
+
 
 def crear_eleccion_query(eleccion: Eleccion_apoyo):
 
