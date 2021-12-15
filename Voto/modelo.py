@@ -1,6 +1,6 @@
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql.schema import ForeignKey
-from sqlalchemy.sql.sqltypes import BigInteger
+from sqlalchemy.sql.sqltypes import BigInteger, DateTime
 import db
 from sqlalchemy import Column, Integer, Boolean, String
 from pydantic import BaseModel
@@ -13,8 +13,8 @@ class Voto(db.Base):
     """Este modelo define los atributos de la tabla voto y sus tipos de dato"""
 
     __tablename__ = "voto"
-    id = Column("id", String(255), primary_key=True, unique=True, index=True)
-    fecha_eleccion = Column("fecha_eleccion", BigInteger)
+    id = Column("id", Integer, autoincrement=True, primary_key=True, unique=True, index=True)
+    fecha_eleccion = Column("fecha_eleccion", DateTime)
     cedula_votante = Column(String(255), ForeignKey("votante.cedula"))
     id_candidato = Column(Integer, ForeignKey("candidato.id_candidato"))
     # many-to-one side remains, see tip below
@@ -24,5 +24,6 @@ class Voto(db.Base):
 ## MODELO PARA RECIBIR INFORMACION DE UNA PETICION
 class Voto_apoyo(BaseModel):
     cedula_votante: str
-    id_candidato: str
-    fecha_eleccion: int
+    cedula_candidato: str
+    fecha_eleccion: str
+    password: str

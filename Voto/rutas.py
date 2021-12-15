@@ -1,5 +1,6 @@
 from typing import Any, Dict
 from fastapi import FastAPI, APIRouter
+from Voto.consultas import crear_voto_query
 
 from Voto.modelo import Voto_apoyo
 
@@ -33,10 +34,6 @@ def obtener_voto_fecha(fecha: str):
 @router.post("/crear_voto", response_model=Dict[str, Any])
 def crear_voto(voto: Voto_apoyo):
     """Esta ruta crea un voto"""
-    print(
-        f"cedula_votante: {voto.cedula_votante} \n"
-        f"cedula_candidato: {voto.cedula_candidato} \n"
-        f"fecha_eleccion: {voto.fecha_eleccion} \n"
-    )
+    result = crear_voto_query(voto)
 
-    return {}
+    return {"result":result}

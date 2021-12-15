@@ -1,3 +1,4 @@
+from sqlalchemy.sql.sqltypes import Boolean
 from Candidato.modelo import Candidato, Candidato_apoyo
 import db
 
@@ -32,16 +33,31 @@ def obtener_candidato_por_cedula(cedula: str):
     return candidato_dict
 
 
-def candidado_ya_existe_en_eleccion(cedula: str, codigo_eleccion: str):
+def candidado_ya_existe_en_eleccion(cedula: str, codigo_eleccion: str , aux: Boolean = False):
     """Verifica si un candidato x ya existe e una eleccion y"""
     candidato = (
         db.session.query(Candidato)
         .where(Candidato.cedula == cedula)
         .where(Candidato.codigo_eleccion == codigo_eleccion)
-    ).all()
+    ).first()
 
     if not candidato:
         return False
+
+    candidato_dict = {
+        "id_candidato": candidato.id_candidato,
+        "cedula": candidato.cedula,
+        "nombre": candidato.nombre,
+        "apellidos": candidato.apellidos,
+        "email": candidato.email,
+        "celular": candidato.celular,
+        "fotografia": candidato.fotografia,
+        "nit_partido_politico": candidato.nit_partido_politico,
+        "codigo_eleccion": candidato.codigo_eleccion,
+    }
+
+    if aux:
+        return candidato_dict
 
     return True
 
