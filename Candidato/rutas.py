@@ -32,6 +32,28 @@ def obtener_candidatos():
 
     return diccionario_candidatos
 
+@router.get("/obtener_candidatos_por_fecha/{fecha_eleccion}", response_model=Dict[str, Any])
+def obtener_candidatos_por_fecha(fecha_eleccion: str):
+    """Esta ruta obtiene todos los candidatos registrados"""
+    candidatos = obtener_candidatos_por_fecha_query(fecha_eleccion)
+    if not candidatos:
+        diccionario_candidatos = {}
+        for candidato in candidatos:
+            candidato_item = {
+                "nombre": candidato.nombre,
+                "apellidos": candidato.apellidos,
+                "celular": candidato.celular,
+                "email": candidato.email,
+                "fotografia": candidato.fotografia,
+                "nit_partido_politico": candidato.nit_partido_politico,
+                "codigo_eleccion": candidato.codigo_eleccion,
+            }
+
+            diccionario_candidatos[candidato.cedula] = candidato_item
+
+        return diccionario_candidatos
+    else:
+        return {"result": f"No se pudieron obtener candidatos para esta eleccion {fecha_eleccion}"}
 
 @router.get("/obtener_candidato/{cedula}", response_model=Dict[str, Any])
 def obtener_candidato(cedula: str):

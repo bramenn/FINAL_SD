@@ -44,8 +44,8 @@ def obtener_eleccion_por_fecha(fecha: str):
     eleccion_dict = {
         "codigo": eleccion.codigo,
         "fecha_eleccion": eleccion.fecha_eleccion,
-        "fecha_inicio": eleccion.hora_inicio,
-        "fecha_fin": eleccion.hora_fin,
+        "hora_inicio": eleccion.hora_inicio,
+        "hora_fin": eleccion.hora_fin,
         "nombre": eleccion.nombre,
         "descripcion": eleccion.descripcion,
     }
@@ -65,8 +65,8 @@ def obtener_eleccion_por_codigo(codigo: str):
     eleccion_dict = {
         "codigo": eleccion.codigo,
         "fecha_eleccion": eleccion.fecha_eleccion,
-        "fecha_inicio": eleccion.hora_inicio,
-        "fecha_fin": eleccion.hora_fin,
+        "hora_inicio": eleccion.hora_inicio,
+        "hora_fin": eleccion.hora_fin,
         "nombre": eleccion.nombre,
         "descripcion": eleccion.descripcion,
     }
@@ -78,7 +78,7 @@ def crear_eleccion_query(eleccion: Eleccion_apoyo):
     # ponemos la fecha eleccion en el formato esperado por la bd
     eleccion_fecha = datetime.strptime(eleccion.fecha_eleccion, "%d-%m-%Y")
 
-    if not (eleccion_fecha >= datetime.now()):
+    if not (eleccion_fecha.day > datetime.now().day - 1):
         return f"No se puede crear esta eleccion porque la fecha {eleccion.fecha_eleccion} ya paso"
     # Verificamos que la eleccion no exista
     eleccion_en_db_fecha = obtener_eleccion_por_fecha(eleccion.fecha_eleccion)

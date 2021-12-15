@@ -35,7 +35,7 @@ def obtener_candidato_por_cedula(cedula: str):
     return candidato_dict
 
 
-def obtener_candidato_por_codigo_eleccion(codigo_eleccion: str):
+def obtener_candidato_por_codigo_eleccion(codigo_eleccion: str):  # TODO CORREGIR A PLURAL
     """se obtiene un candidato con el numero de la codigo_eleccion"""
     candidatos = (
         db.session.query(Candidato).where(Candidato.codigo_eleccion == codigo_eleccion).all()
@@ -43,6 +43,23 @@ def obtener_candidato_por_codigo_eleccion(codigo_eleccion: str):
 
     if not candidatos:
         return None
+
+    return candidatos
+
+
+def obtener_candidatos_por_fecha_query(fecha_eleccion: str):
+    eleccion = obtener_eleccion_por_fecha(fecha_eleccion)
+
+    if not eleccion:
+        return None
+
+    candidatos = (
+        db.session.query(Candidato).where(Candidato.codigo_eleccion == eleccion.codigo)
+    ).all()
+
+    if not candidatos:
+        return None
+
 
     return candidatos
 
